@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title>Chat Server</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#fafafa">
+</head>
+<body>
+<!-- Header -->
+<header>
+  <nav>
+    <a href="index.html" class="nav-link active">Chat server</a>
+    <a href="about.html" class="nav-link">About</a>
+  </nav>
+</header>
+
+
+<div id="chat-container">
+
+    <!-- LIST OF ROOMS -->
+    <div  id="room-list">
+
+        <h3 style="text-align: center; padding-bottom: 5%">Canvas Editor</h3>
+
+<!--        <ul id="rooms-list" class="rooms-list">-->
+<!--        &lt;!&ndash; Each list item is a button that when clicked put the user in the room &ndash;&gt;-->
+<!--        </ul>-->
+        <input id="canvasName" placeholder="Name" type="text">
+        <button onclick="getCanvas()">Create/Access Canvas</button>
+
+
+        <input id="canvasPassword" placeholder="Password" type="text">
+        <button id="canvasPasswordButton">Use Password</button>
+
+<!--        <input id="canvasPassword" placeholder="Unique Canvas Name" type="text">-->
+<!--        <button onclick="getCanvas()">Create/Access Canvas</button>-->
+
+      <div class="side-button-container">
+<!--          <button onclick="newRoom()">New Canvas</button>-->
+<!--        <button class="side-button newRoom" onclick="newRoom()">New Room</button>-->
+<!--        <button class="side-button refresh" onclick="roomList()">↻</button>-->
+      </div>
+    </div>
+
+    <div id="space"></div>
+
+  <!-- CANVAS -->
+    <div>
+
+<!--      <canvas id="myCanvas" width="400" height="400"></canvas>-->
+      <div id="guide"></div>
+      <canvas id="canvas" width="450" height="450"></canvas>
+
+      <div>
+        <label for="colorInput" style="align-self: center">Set Color</label>
+        <input type="color" id="colorInput">
+      </div>
+        <div id="warningDiv">
+            <h2 id="warningText"></h2>
+        </div>
+
+<!--      <div>-->
+<!--        <label for="toggleGuide">Show Guide</label>-->
+<!--        <input type="checkbox" id="toggleGuide" checked>-->
+<!--      </div>-->
+
+<!--      <div>-->
+<!--        <button type="button" id="clearButton">Clear</button>-->
+<!--      </div>-->
+    </div>
+
+    <div id="space2"></div>
+
+    <div id="command-container">
+        <h3 style="text-align: center">Canvas Information</h3>
+
+        <h2 id="numViewers"></h2>
+        <h2 id="numEditors"></h2>
+
+<!--        <ul id="commands-list" class="rooms-list">-->
+<!--            &lt;!&ndash; Each list item is a button that when clicked put the user in the room &ndash;&gt;-->
+<!--            <li>Get users: /users</li>-->
+<!--            <li>Whisper: /whisper [user] [message]</li>-->
+<!--            <li>Random #: /rand [num1] [num2]</li>-->
+<!--        </ul>-->
+    </div>
+</div>
+
+
+
+<!--      &lt;!&ndash; MESSAGE BOX &ndash;&gt;-->
+<!--      <h2 id="display-room-id">Room: </h2>-->
+<!--      <textarea title="Chat Log" id="log" readonly></textarea>-->
+
+<!--      &lt;!&ndash; CHAT BOX &ndash;&gt;-->
+<!--      <div id="message-container">-->
+<!--        <h2>Chat:</h2>-->
+<!--        <input title="Chat Input" id="input" type="text" placeholder=""/>-->
+<!--        <button id="chat-send">Send</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div id="command-container">-->
+<!--      <h3 style="text-align: center">Commands:</h3>-->
+
+<!--      <ul id="commands-list" class="rooms-list">-->
+<!--        &lt;!&ndash; Each list item is a button that when clicked put the user in the room &ndash;&gt;-->
+<!--        <li>Get users: /users</li>-->
+<!--        <li>Whisper: /whisper [user] [message]</li>-->
+<!--        <li>Random #: /rand [num1] [num2]</li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<script src="js/main.js"></script>
+
+
+<!-- Footer -->
+<footer>
+  copyright © CSCI 2020U - Winter 2024
+</footer>
+
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

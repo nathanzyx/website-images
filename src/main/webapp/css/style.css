@@ -1,0 +1,379 @@
+/* Reset default margin, padding, and list style */
+body, h1, h2, h3, ul, li, p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Define color variables for the site */
+:root {
+    /* Site Color Scheme 2 */
+    --site-color1: #2d323b;
+    --site-color1-hover: #003f6c;
+    --site-color2: #131721;
+    --site-color3: #e6ecff;
+}
+
+/* Styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Styles for header and footer */
+header {
+    background-color: var(--site-color1);
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    box-sizing: border-box;
+    /*border: 1px solid #fff;*/
+}
+
+footer {
+
+    background-color: var(--site-color1);
+    color: white;
+    padding: 10px 20px;
+    /*padding: 30px 30px;*/
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Styles for navigation links */
+header nav a, footer a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+/* Styles for navigation container */
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+
+
+#canvas {
+    cursor: pointer;
+}
+
+#guide {
+    display: grid;
+    pointer-events: none;
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#warningDiv {
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #c8c8c8;
+    border-radius: 15px;
+    width: 80%
+}
+
+#warningDiv h2 {
+    text-align: center;
+}
+
+#pop-up {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+#guide div {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* Styles for the main chat container */
+#chat-container {
+    display: flex;
+    flex: 1;
+    padding-bottom: 50px;
+    margin-bottom: 0;
+}
+
+/* Styles for the room list */
+#room-list {
+    background-color: var(--site-color2);
+    padding: 20px;
+    width: 12%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+    margin-bottom: 0;
+}
+
+/* Styles for room list heading */
+#room-list h3 {
+    /*margin-bottom: 20px;*/
+    color: white;
+}
+
+/* Styles for room list items */
+#room-list ul {
+    overflow-y: auto;
+}
+
+/* Styles for side buttons container */
+.side-button-container {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* Styles for side buttons */
+.side-button {
+    background-color: var(--site-color1);
+    color: white;
+    border: none;
+    padding: 10%;
+    border-radius: 4px;
+    margin: 1%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.refresh {
+    width: 10%;
+    font-size: 170%;
+}
+
+.newRoom {
+    /*width: 10%;*/
+    font-size: 120%;
+}
+
+/* Styles for side buttons on hover */
+.side-button:hover {
+    background-color: var(--site-color1-hover);
+}
+
+/* Styles for rooms list container */
+.rooms-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Styles for rooms list items */
+.rooms-list li {
+    margin-bottom: .5%;
+}
+
+/* Styles for individual rooms list buttons */
+.rooms-list-button {
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-color: transparent;
+    flex: 1;
+    max-width: 200px;
+    margin: 5px;
+    border-radius: 4px;
+    align-content: center;
+    font-size: 150%;
+}
+
+/* Styles for rooms list buttons on hover */
+.rooms-list-button:hover {
+    background-color: #e0e0e0;
+    font-size: 170%;
+}
+
+/* Styles for room buttons */
+.room-button {
+    background: none;
+    color: black;
+    text-align: left;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    display: block;
+}
+
+/* Styles for room buttons on hover */
+.room-button:hover {
+    text-decoration: underline;
+}
+
+#space {
+    display: flex;
+    width: 10%;
+}
+
+#space2 {
+    display: flex;
+    width: 10%;
+}
+
+/* Styles for the chat room container */
+#chat-room {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Styles for chat room buttons */
+#chat-room button {
+    background-color: var(--site-color1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+/* Styles for chat room buttons on hover */
+#chat-room button:hover {
+    background-color: var(--site-color1-hover);
+}
+
+/* Styles for command container */
+#command-container {
+    background-color: #d5d5d5;
+    color: #0d1117;
+    padding: 20px;
+    width: 15%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+    margin-bottom: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Styles for command container list */
+#command-container ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    box-sizing: border-box;
+}
+
+/* Styles for command container list items */
+#command-container ul li {
+    background-color: #e7e7e7;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+/* Styles for footer */
+footer {
+    background-color: var(--site-color1);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    height: 40px;
+    position: fixed;
+    z-index: 1000;
+}
+
+/* Styles for navigation links */
+header nav a.nav-link {
+    /*color: white;*/
+    color: var(--site-color3);
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+/* Styles for text area */
+textarea {
+    width: 90%;
+    height: 100%;
+    padding: 10px;
+}
+
+/* Styles for input */
+#input {
+    width: 90%;
+    padding: 10px;
+}
+
+/* Styles for active navigation links on hover */
+header nav a.nav-link:not(.active):hover {
+    text-decoration: underline;
+}
+
+/* Styles for active navigation links */
+header nav a.nav-link.active {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--site-color3);
+}
+
+/* Styles for about text */
+.about-text {
+    color: var(--site-color2);
+}
+
+/* Styles for about heading */
+.about-heading {
+    color: var(--site-color1);
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    header, footer {
+        padding: 10px;
+    }
+
+    #room-list {
+        width: 100%;
+        order: -1;
+    }
+
+    #chat-container {
+        flex-direction: column-reverse;
+    }
+
+    footer {
+        position: relative;
+    }
+}

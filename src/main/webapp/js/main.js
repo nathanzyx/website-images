@@ -193,6 +193,23 @@ function fillCell(cellX, cellY) {
     // sendMessage(cellX, cellY, colorInput.value);
 }
 
+let isDrawing = false;
+
+canvas.addEventListener('mousedown', (event) => {
+    isDrawing = true;
+    handleCanvasMouseDown(event);
+});
+
+canvas.addEventListener('mousemove', (event) => {
+    if (isDrawing) {
+        handleCanvasMouseDown(event);
+    }
+});
+
+canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+});
+
 function fillCellFromServer(cellX, cellY, color) {
         const startX = cellX * cellPixelLength;
         const startY = cellY * cellPixelLength;

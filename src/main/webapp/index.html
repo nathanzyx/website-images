@@ -5,6 +5,7 @@
   <title>Chat Server</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/Logo_no_bg.png" type="image/x-icon">
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="stylesheet" href="css/normalize.css">
@@ -15,8 +16,12 @@
 <!-- Header -->
 <header>
   <nav>
-    <a href="index.html" class="nav-link active">Chat server</a>
-    <a href="about.html" class="nav-link">About</a>
+      <div class="nav-links">
+          <img src="assets/Logo-pixel art canvas website.png" alt="Logo" id="logo">
+          <a href="index.html" class="nav-link active">Canvas</a>
+          <a href="about.html" class="nav-link">About</a>
+      </div>
+    <a href="login.html" class="nav-link logout">Logout</a>
   </nav>
 </header>
 
@@ -32,7 +37,7 @@
 <!--        &lt;!&ndash; Each list item is a button that when clicked put the user in the room &ndash;&gt;-->
 <!--        </ul>-->
         <input id="canvasName" placeholder="Name" type="text">
-        <button onclick="getCanvas()">Create/Access Canvas</button>
+        <button id="canvasName" onclick="getCanvas()">Create/Access Canvas</button>
 
 
         <input id="canvasPassword" placeholder="Password" type="text">

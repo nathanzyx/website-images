@@ -1,0 +1,83 @@
+body {
+    background-color: #E0F2F1;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #26A69A;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+#login-container {
+    width: 500px;
+    padding: 30px;
+    background-color: #26A69A;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #004D40;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form label {
+    margin-bottom: 5px;
+}
+
+#login-form input[type="text"], #login-form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+#login-form input[type="submit"] {
+    padding: 10px;
+    background-color: #004D40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-form input[type="submit"]:hover {
+    background-color: #00796B;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #26A69A;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+#logo {
+    width: 150px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+    border-radius: 10%;
+}
+
+header h1 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}

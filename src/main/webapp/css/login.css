@@ -20,12 +20,13 @@ header {
 }
 
 #login-container {
-    width: 500px;
+    width: 1000px;
     padding: 30px;
     background-color: #26A69A;
     color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px #004D40;
+    margin-top: 100px;
 }
 
 #login-form {
@@ -33,18 +34,9 @@ header {
     flex-direction: column;
 }
 
-#login-form label {
-    margin-bottom: 5px;
-}
-
-#login-form input[type="text"], #login-form input[type="password"] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 5px;
-}
-
 #login-form input[type="submit"] {
+    width: 100%;
+    margin-top: 20px;
     padding: 10px;
     background-color: #004D40;
     color: white;
@@ -80,4 +72,15 @@ header h1 {
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+    resize: none;
+    background-color: #c6fff5;
+}
+
+h2 {
+    text-align: center;
 }

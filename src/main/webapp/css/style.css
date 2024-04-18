@@ -445,3 +445,10 @@ nav a.active {
     opacity: 1;
 }
 
+#canvas-container {
+    margin-top: 50px; /* Adjust this value as needed */
+}
+
+#ColorSelector {
+    margin-top: 10px;
+}

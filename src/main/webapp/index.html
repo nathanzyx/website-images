@@ -31,25 +31,19 @@
     <!-- LIST OF ROOMS -->
     <div  id="room-list">
 
-        <h3 style="text-align: center; padding-bottom: 5%">Canvas Editor</h3>
+        <h3 id="canvasEditorBox">Canvas Editor</h3>
 
-<!--        <ul id="rooms-list" class="rooms-list">-->
-<!--        &lt;!&ndash; Each list item is a button that when clicked put the user in the room &ndash;&gt;-->
-<!--        </ul>-->
-        <input id="canvasName" placeholder="Name" type="text">
-        <button id="canvasButton" onclick="getCanvas()">Create/Access Canvas</button>
+        <div style="height: 5%;"></div>
 
+        <input id="canvasName" class="canvasLoginInput" placeholder="Name" type="text">
+        <button id="canvasButton" class="canvasLoginButton" onclick="getCanvas()">Create/Access Canvas</button>
 
-        <input id="canvasPassword" placeholder="Password" type="text">
-        <button id="canvasPasswordButton">Use Password</button>
+        <div style="height: 5%;"></div>
 
-<!--        <input id="canvasPassword" placeholder="Unique Canvas Name" type="text">-->
-<!--        <button onclick="getCanvas()">Create/Access Canvas</button>-->
+        <input id="canvasPassword" class="canvasLoginInput" placeholder="Password" type="text">
+        <button id="canvasPasswordButton" class="canvasLoginButton">Use Password</button>
 
       <div class="side-button-container">
-<!--          <button onclick="newRoom()">New Canvas</button>-->
-<!--        <button class="side-button newRoom" onclick="newRoom()">New Room</button>-->
-<!--        <button class="side-button refresh" onclick="roomList()">↻</button>-->
       </div>
     </div>
 
@@ -57,8 +51,6 @@
 
   <!-- CANVAS -->
     <div>
-
-<!--      <canvas id="myCanvas" width="400" height="400"></canvas>-->
         <div id="canvas-container">
       <div id="guide"></div>
       <canvas id="canvas" width="450" height="450"></canvas>
@@ -71,59 +63,22 @@
         <div id="warningDiv">
             <h2 id="warningText"></h2>
         </div>
-
-<!--      <div>-->
-<!--        <label for="toggleGuide">Show Guide</label>-->
-<!--        <input type="checkbox" id="toggleGuide" checked>-->
-<!--      </div>-->
-
-<!--      <div>-->
-<!--        <button type="button" id="clearButton">Clear</button>-->
-<!--      </div>-->
     </div>
 
     <div id="space2"></div>
 
     <div id="command-container">
-        <h3 style="text-align: center">Canvas Information</h3>
+        <h3 class="canvasNameBox" id="canvasNameBox">Canvas Information</h3>
 
-        <h2 id="numViewers"></h2>
-        <h2 id="numEditors"></h2>
+        <div style="height: 5%;"></div>
 
-<!--        <ul id="commands-list" class="rooms-list">-->
-<!--            &lt;!&ndash; Each list item is a button that when clicked put the user in the room &ndash;&gt;-->
-<!--            <li>Get users: /users</li>-->
-<!--            <li>Whisper: /whisper [user] [message]</li>-->
-<!--            <li>Random #: /rand [num1] [num2]</li>-->
-<!--        </ul>-->
+        <h2 class="canvasInfoBox" id="numViewers"></h2>
+
+        <div style="height: 5%;"></div>
+
+        <h2 class="canvasInfoBox" id="numEditors"></h2>
     </div>
 </div>
-
-
-
-<!--      &lt;!&ndash; MESSAGE BOX &ndash;&gt;-->
-<!--      <h2 id="display-room-id">Room: </h2>-->
-<!--      <textarea title="Chat Log" id="log" readonly></textarea>-->
-
-<!--      &lt;!&ndash; CHAT BOX &ndash;&gt;-->
-<!--      <div id="message-container">-->
-<!--        <h2>Chat:</h2>-->
-<!--        <input title="Chat Input" id="input" type="text" placeholder=""/>-->
-<!--        <button id="chat-send">Send</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div id="command-container">-->
-<!--      <h3 style="text-align: center">Commands:</h3>-->
-
-<!--      <ul id="commands-list" class="rooms-list">-->
-<!--        &lt;!&ndash; Each list item is a button that when clicked put the user in the room &ndash;&gt;-->
-<!--        <li>Get users: /users</li>-->
-<!--        <li>Whisper: /whisper [user] [message]</li>-->
-<!--        <li>Random #: /rand [num1] [num2]</li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--</div>-->
-
 
 <script src="js/main.js"></script>
 

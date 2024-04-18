@@ -106,6 +106,13 @@ function enterRoom(data) {
             // Make HTML headers display number of viewers and editors
             document.getElementById("numViewers").innerText = "Viewers: " + message.viewers;
             document.getElementById("numEditors").innerText = "Editors: " + message.editors;
+        } else if (message.type === 'canvasName') {
+            // console.log("canvas name called");
+            // const canvasNameBox = document.getElementById("canvasNameBox");
+            //
+            // canvasNameBox.innerText = "Name" + message.name;
+            document.getElementById("canvasNameBox").innerText = "Name" + message.name;
+            console.log("canvasName");
         } else if (message.type === 'warning') {
 
             document.getElementById("warningText").innerText = message.message;
@@ -115,8 +122,6 @@ function enterRoom(data) {
             setTimeout(function() {
                 document.getElementById("warningDiv").style.display = "none";
             }, 3000);
-
-
         }
     }
 }

@@ -116,6 +116,9 @@ public class CanvasServer {
         JSONObject jsonData = new JSONObject(canvas.getCanvasData());
         String jsonString = jsonData.toString();
         session.getBasicRemote().sendText("{\"type\": \"canvasJSON\", \"data\":" + jsonString + "}");
+
+        // Sends canvas' name to the user
+        session.getBasicRemote().sendText("{\"type\": \"canvasName\", \"name\":\"" + canvas.getCode() + "\"}");
     }
 
     // Sends message containing number of editors and number of viewers to specified user
@@ -188,7 +191,7 @@ public class CanvasServer {
         String type = (String) jsonmsg.get("type");
         String message = (String) jsonmsg.get("msg");
 
-        System.out.println(type + ": " + message);
+//        System.out.println(type + ": " + message);
 
         Canvas room = null;
 

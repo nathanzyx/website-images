@@ -1,0 +1,95 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title>Canvas Homepage</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/Logo_no_bg.png" type="image/x-icon">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#fafafa">
+</head>
+<body>
+<!-- Header -->
+<header>
+  <nav>
+      <div class="nav-links">
+          <img src="assets/Logo-pixel art canvas website.png" alt="Logo" id="logo">
+          <a href="canvas.html" class="nav-link active">Canvas</a>
+          <a href="about.html" class="nav-link">About</a>
+      </div>
+    <a href="index.html" class="nav-link logout">Logout</a>
+  </nav>
+</header>
+
+
+<div id="chat-container">
+
+    <!-- LIST OF ROOMS -->
+    <div  id="canvas-login">
+
+        <h3 id="canvasEditorBox">Canvas Editor</h3>
+
+        <div style="height: 5%;"></div>
+
+        <input id="canvasName" class="canvasLoginInput" placeholder="Name" type="text">
+        <button id="canvasButton" class="canvasLoginButton" onclick="getCanvas()">Create/Access Canvas</button>
+
+        <div style="height: 5%;"></div>
+
+        <input id="canvasPassword" class="canvasLoginInput" placeholder="Password" type="text">
+        <button id="canvasPasswordButton" class="canvasLoginButton">Enter Password</button>
+
+      <div class="side-button-container">
+      </div>
+    </div>
+
+    <div id="space"></div>
+
+  <!-- CANVAS -->
+    <div>
+        <div id="canvas-container">
+      <div id="guide"></div>
+      <canvas id="canvas" width="450" height="450"></canvas>
+        </div>
+
+      <div id="ColorSelector">
+        <label for="colorInput" style="align-self: center">Color</label>
+        <input type="color" id="colorInput">
+      </div>
+        <div id="warningDiv">
+            <h2 id="warningText"></h2>
+        </div>
+    </div>
+
+    <div id="space2"></div>
+
+    <div id="command-container">
+        <h3 class="canvasNameBox" id="canvasNameBox"></h3>
+
+        <div style="height: 5%;"></div>
+
+        <h2 class="canvasInfoBox" id="numViewers"></h2>
+
+        <div style="height: 5%;"></div>
+
+        <h2 class="canvasInfoBox" id="numEditors"></h2>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+
+
+<!-- Footer -->
+<footer>
+  copyright © CSCI 2020U - Winter 2024
+</footer>
+
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

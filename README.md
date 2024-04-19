@@ -13,11 +13,11 @@
 ### Description:
 
 **This project uses web sockets to establish a live connection between a client and the 
-server, allowing the client to draw on a pixelated canvas in real time with other users. Along
+server as well as a RESTful API, allowing the client to draw on a pixelated canvas in real time with other users. Along
 with the ability to draw on a live canvas, the server saves the canvas' data and password in a 
 JSON file when all users have exited the live canvas room.**
 
-### Canvas-Editor Demo Video (Click Link): [Demo Video](https://drive.google.com/file/d/1g3LkxhpK9xm9uOiwylukjoiesB4y1NNN/view?usp=sharing)
+### Canvas-Editor Demo Video (Click Link): [Demo Video](https://drive.google.com/file/d/12xqiBED4_NHcdzeQsEbltHz4PqWVLw5z/view?usp=drive_link)
 
 ***
 # Notes
@@ -68,17 +68,17 @@ JSON file when all users have exited the live canvas room.**
   - Click: *__Clone__*
 ### Run Project
 - Ensure GlassFish is Installed
-- Right click *__pom.xml__* file in *__w24-csci2020u-assignment02-shaikh-louie-tandory-jagroop__* folder -> Click *__Add as Maven Project__* 
+- Right click *__pom.xml__* file in *__w24-csci2020u-final-project-shaikh-tandory-krishnamoorthy-jagroop__* folder -> Click *__Add as Maven Project__* 
 (If *__Add as Maven Project__* does not appear, this step has already been completed.)
 - Navigate to *__File__* -> *__Settings...__* -> *__Build, Execution, Deployment__* -> *__Application Servers__*
   - Ensure GlassFish is added as an Application Server
 - Navigate to *__Run__* -> *__Edit Configurations...__* -> Click the *__+__* symbol -> Click *__Local__* under *__GlassFish Server__*
   - use URL: http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/
   - use Server Domain: *domain1*
-  - Click on *__Deployment__* -> Click the *__+__* symbol -> Click *__Artifact...__* -> Click *__WSChatServer:war exploded__*
+  - Click on *__Deployment__* -> Click the *__+__* symbol -> Click *__Artifact...__* -> Click *__WSCanvasServer:war exploded__*
   - Click *__Apply__* then click *__Ok__*
 - Then click the play button in the top middle/right while GlassFish is selected (Wait approx. 1 min for the server to run)
-- (If index.html does not automatically run) While server is running, right-click the *__login.html__* file in *__webapp__* folder and click *__Run 'login.html'__*
+- (If index.html does not automatically run) While server is running, right-click the *__index.html__* file in *__webapp__* folder and click *__Run 'index.html'__*
 - To stop running the server, Click the red stop button
 
 ***

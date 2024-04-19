@@ -1,4 +1,4 @@
-# Chat-Room
+# Pixelated Canvas Editor
 ***
 ## Project Information
 
@@ -10,67 +10,61 @@
 
 **- Sanjith Krishnamoorthy**
 
-[//]: # (**- Shem Jagroop**)
-
 ### Description:
 
 **This project uses web sockets to establish a live connection between a client and the 
-server, allowing the client to chat in real time with other users. Along with the ability 
-to create chat-rooms, a user has access to server commands within the chat-room for various 
-real-world uses.**
+server, allowing the client to draw on a pixelated canvas in real time with other users. Along
+with the ability to draw on a live canvas, the server saves the canvas' data and password in a 
+JSON file when all users have exited the live canvas room.**
 
-### Chat-Room Demo Video (Click Link): [Demo Video](https://drive.google.com/file/d/1g3LkxhpK9xm9uOiwylukjoiesB4y1NNN/view?usp=sharing)
+### Canvas-Editor Demo Video (Click Link): [Demo Video](https://drive.google.com/file/d/1g3LkxhpK9xm9uOiwylukjoiesB4y1NNN/view?usp=sharing)
 
 ***
-# Improvements
+# Notes
 
-### Chat-Room Commands:
-**Users in a chat-room have the ability to use chat commands, which are indicated by a forward slash '/' at the 
-beginning of a message followed by the specified command. Commands can be seen on the right side of the chat-room 
-web page. Steps have been taken to ensure improperly formatted commands are ignored.**
+### Loading a Canvas:
 
-- `/users`
-**This command returns all users currently in a chat-room. If a user in the chat-room has 
-not entered a name for themselves (ie: user has not sent a message yet) they will be 
-included in the count of "Anonymous" users.**
-  - Example usage of */users* command:
-    > */users*
+**Upon entering a name in the *__Name__* field of the main page, one of the three will occur:**
+
+  - An existing canvas will be loaded in from the API *(if the canvas exists in the API)*
 
 
-- `/whisper`
-**This command only sends a message to the user specified in the command. If a user whispers to a username
-which does not exist in the chat-room, the user whispering will be notified that the user being whispered
-to does not exist.**
-  - Example usage of */whisper* command:
-    > */whisper user1 hello how are you*
+  - The user will join the live canvas *(if the canvas is live on the server)*
+
+
+  - The server will create a new blank canvas *(if the canvas exists neither in the API nor the live server)* 
+
+### Canvas Passwords:
+
+**A canvas can be changed by anyone if it has no password, if it does have a password the user must enter it before editing.**
+
+  - If a canvas has no password, you can set a password by using the *__Password__* field then either pressing
+  *__Enter Password__* or using the *__Enter__* button on their keyboard.
+
+
+  - When a canvas has a password, users who have not yet entered the password will be counted as *__Viewers__*
+  and users who have entered the correct password and can edit the canvas are counted as *__Editors__*. You can see
+  the number of viewers and editors on the right side of the canvas page along with the name of the canvas you are
+  editing.
+
+
+  - The canvas' password will be saved as a JSON object in the API when the canvas is closed.
+
+
+  - A user who has not entered a canvas' password (i.e. a viewer), will be able to draw on the canvas, but no changes
+  will be logged to either the server or other users.
+
+### Editing the Canvas:
+
+**You can select a color to draw with by clicking on the *__Color__* box below the canvas.**
+
     
-    In this case *"user1"* will receive the message *"hello how are you"*.
-
-
-- `/rand`
-  **This command returns to all users a random number between two numbers provided in the message.**
-  - Examples usage of */rand* command:
-    > */rand 1 10*
-
-    > */rand 50 20*
-    
-    In these cases ***all*** users in the chatroom will receive a message containing the random number generated between 
-    the provided numbers.
-
-### Refresh Chat-Room List Button:
-**A small improvement made to the web applications UI is the addition of a "↻" button which refreshes the
-list of chat-rooms.**
-
-### Send Chat Button:
-**A small improvement made to the web applications UI is the addition of a "Send" button which sends a users
-message.**
-
 ***
 ## How To Run
 
 ### Clone project in IntelliJ IDEA
 - Navigate to: *__File__* -> *__New__* -> *__Project from Version Control...__*
-  - Use URL: https://github.com/OntarioTech-CS-program/w24-csci2020u-assignment02-shaikh-louie-tandory-jagroop
+  - Use URL: https://github.com/OntarioTech-CS-program/w24-csci2020u-final-project-shaikh-tandory-krishnamoorthy-jagroop
   - Click: *__Clone__*
 ### Run Project
 - Ensure GlassFish is Installed
@@ -79,20 +73,20 @@ message.**
 - Navigate to *__File__* -> *__Settings...__* -> *__Build, Execution, Deployment__* -> *__Application Servers__*
   - Ensure GlassFish is added as an Application Server
 - Navigate to *__Run__* -> *__Edit Configurations...__* -> Click the *__+__* symbol -> Click *__Local__* under *__GlassFish Server__*
-  - use URL: http://localhost:8080/WSChatServer-1.0-SNAPSHOT/
+  - use URL: http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/
   - use Server Domain: *domain1*
   - Click on *__Deployment__* -> Click the *__+__* symbol -> Click *__Artifact...__* -> Click *__WSChatServer:war exploded__*
   - Click *__Apply__* then click *__Ok__*
 - Then click the play button in the top middle/right while GlassFish is selected (Wait approx. 1 min for the server to run)
-- (If index.html does not automatically run) While server is running, right-click the *__index.html__* file in *__webapp__* folder and click *__Run 'index.html'__*
+- (If index.html does not automatically run) While server is running, right-click the *__login.html__* file in *__webapp__* folder and click *__Run 'login.html'__*
 - To stop running the server, Click the red stop button
 
 ***
 ## Resources
 
 ### Gson library:
-**The Gson library developed by Google was used in ChatRoomList.java class to convert a HashSet of room codes 
-from ChatServlet.java class into JSON format for the purpose of displaying a list of rooms codes in the web app.**
+**The Gson library developed by Google was used in the 'close' function in CanvasServer.java class to convert a HashSet of canvas data 
+into JSON format for the purpose of saving canvas data to the API when the canvas closes.**
 
 -  **MVN Repository for Gson:**
   https://mvnrepository.com/artifact/com.google.code.gson/gson
@@ -100,27 +94,32 @@ from ChatServlet.java class into JSON format for the purpose of displaying a lis
 ***
 ## Contributions
 
-**Nathan Tandory: (50%)**
+**Nathan Tandory: (40%)**
 - *Back-End:*
-  - ChatServer.java
-  - ChatRoomList.java
-  - Chat-Room Commands
+  - CanvasApplication.java
+  - CanvasCheckResource.java
+  - CanvasLogResource.java
+  - CanvasAPIHandler.java
+  - Canvas.java
+  - CanvasServer.java
   - main.js
+
+- *Front-End:*
+  - index.html
+  - style.css
 
 - *Other:*
   - README.md
 
-**Ebrahim Shaikh: (35%)**
+**Ebrahim Shaikh: (40%)**
 - *Front-End:*
   - index.html
+  - login.html
+  - login.css
   - about.html
   - style.css
 
-**Jaydon Louie: (15%)**
+**Sanjith Krishnamoorthy: (20%)**
 - *Front-End:*
   - style.css
-  - index.html
-- *Back-End:*
-  - main.js
-
-**Shem Jagroop: (0%)**
+  - login.html

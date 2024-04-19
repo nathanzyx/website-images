@@ -107,12 +107,7 @@ function enterRoom(data) {
             document.getElementById("numViewers").innerText = "Viewers: " + message.viewers;
             document.getElementById("numEditors").innerText = "Editors: " + message.editors;
         } else if (message.type === 'canvasName') {
-            // console.log("canvas name called");
-            // const canvasNameBox = document.getElementById("canvasNameBox");
-            //
-            // canvasNameBox.innerText = "Name" + message.name;
-            document.getElementById("canvasNameBox").innerText = "Name" + message.name;
-            console.log("canvasName");
+            document.getElementById("canvasNameBox").innerText = message.name;
         } else if (message.type === 'warning') {
 
             document.getElementById("warningText").innerText = message.message;
@@ -143,8 +138,8 @@ const colorHistory = {};
 // Set default color
 colorInput.value = '#000000';
 
-// Make Guide
-{
+// Create the grid for the canvas (lines in between pixels)
+function makeGuide(){
     guide.style.width = `${canvas.width}px`;
     guide.style.height = `${canvas.height}px`;
     guide.style.gridTemplateColumns = `repeat(${CELL_SIDE_COUNT}, 1fr)`;
@@ -152,9 +147,10 @@ colorInput.value = '#000000';
 
     [...Array(CELL_SIDE_COUNT ** 2)].forEach(() => guide.insertAdjacentHTML("beforeend", "<div></div>"))
 }
+makeGuide();
 
-function handleCanvasMouseDown(e) {
-    // Esnure user is using their primary mouse button
+function MouseDown(e) {
+    // Ensure user is using their PRIMARY mouse button
     if (e.button !== 0) {
         return;
     }
@@ -195,19 +191,18 @@ function fillCell(cellX, cellY) {
         let request = {"type":"pixel", "msg": message};
         ws.send(JSON.stringify(request));
     }
-    // sendMessage(cellX, cellY, colorInput.value);
 }
 
 let isDrawing = false;
 
 canvas.addEventListener('mousedown', (event) => {
     isDrawing = true;
-    handleCanvasMouseDown(event);
+    MouseDown(event);
 });
 
 canvas.addEventListener('mousemove', (event) => {
     if (isDrawing) {
-        handleCanvasMouseDown(event);
+        MouseDown(event);
     }
 });
 
@@ -215,25 +210,19 @@ canvas.addEventListener('mouseup', () => {
     isDrawing = false;
 });
 
+// function that fills cell when the server sends a message to change a pixel
 function fillCellFromServer(cellX, cellY, color) {
         const startX = cellX * cellPixelLength;
         const startY = cellY * cellPixelLength;
 
-        // drawingContext.fillStyle = color;
-        // drawingContext.fillRect(startX, startY, cellPixelLength, cellPixelLength);
-        // colorHistory[`${cellX}_${cellY}`] = color;
         drawingContext.fillStyle = color;
         drawingContext.fillRect(startX, startY, cellPixelLength, cellPixelLength);
-
-        // let message = "";
-        // message = cellX + "," + cellY + "," + colorInput.value;
     }
 
 
-canvas.addEventListener("mousedown", handleCanvasMouseDown);
+canvas.addEventListener("mousedown", MouseDown);
 
 (function(){
-    // Make Warning Div Invisible
+    // Make warning div invisible upon loading
     document.getElementById("warningDiv").style.display = "none";
-
 })();

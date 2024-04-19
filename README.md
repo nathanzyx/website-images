@@ -13,7 +13,7 @@
 ### Description:
 
 **This project uses web sockets to establish a live connection between a client and the 
-server as well as a RESTful API, allowing the client to draw on a pixelated canvas in real time with other users. Along
+server as well as a RESTful API to store and retrieve canvas data, allowing the client to draw on a pixelated canvas in real time with other users. Along
 with the ability to draw on a live canvas, the server saves the canvas' data and password in a 
 JSON file when all users have exited the live canvas room.**
 

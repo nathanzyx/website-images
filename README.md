@@ -105,7 +105,7 @@ into JSON format for the purpose of saving canvas data to the API when the canva
   - main.js
 
 - *Front-End:*
-  - canvas.html (canvas page)
+  - canvas.html
   - style.css
 
 - *Other:*

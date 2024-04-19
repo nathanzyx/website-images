@@ -105,7 +105,7 @@ into JSON format for the purpose of saving canvas data to the API when the canva
   - main.js
 
 - *Front-End:*
-  - index.html
+  - canvas.html (canvas page)
   - style.css
 
 - *Other:*
@@ -113,8 +113,8 @@ into JSON format for the purpose of saving canvas data to the API when the canva
 
 **Ebrahim Shaikh: (40%)**
 - *Front-End:*
+  - canvas.html
   - index.html
-  - login.html
   - login.css
   - about.html
   - style.css
@@ -122,4 +122,4 @@ into JSON format for the purpose of saving canvas data to the API when the canva
 **Sanjith Krishnamoorthy: (20%)**
 - *Front-End:*
   - style.css
-  - login.html
+  - index.html

@@ -78,7 +78,7 @@ JSON file when all users have exited the live canvas room.**
   - Click on *__Deployment__* -> Click the *__+__* symbol -> Click *__Artifact...__* -> Click *__WSCanvasServer:war exploded__*
   - Click *__Apply__* then click *__Ok__*
 - Then click the play button in the top middle/right while GlassFish is selected (Wait approx. 1 min for the server to run)
-- (If index.html does not automatically run) While server is running, right-click the *__index.html__* file in *__webapp__* folder and click *__Run 'index.html'__*
+- (If index.html does not automatically run) While server is running, right-click the *__index.html__* file in *__src__* -> *__main__* -> *__webapp__* folder and click *__Run 'index.html'__*
 - To stop running the server, Click the red stop button
 
 ***

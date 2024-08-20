@@ -76,6 +76,7 @@ public class CanvasLogResource {
         try {
             // Save the canvas to the canvasID.json file
             FileReadWriter.saveFile(data, canvasID + ".json", contentAsString);
+            FileReadWriter.saveCanvas(filename, content, password);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,11 +1,16 @@
-package com.example.webcanvasserver;
+package com.example.login;
 
 import com.auth0.jwt.*;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-public class TokenValidator {
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator.Builder;
+
+import java.util.Date;
+
+public class TokenManager {
     private static final String SECRET_KEY = "root";
 
     public static String validateToken(String token) {
@@ -20,7 +25,7 @@ public class TokenValidator {
             // Extract user ID from claims
             String userId = jwt.getSubject();
 
-            System.out.println("validateToken: Validated token, user is: " + userId);
+            System.out.println("validateToken: Validated token, user is '" + userId + "'.");
 
             return userId; // Assuming the user ID is stored in the subject field
 
@@ -30,4 +35,16 @@ public class TokenValidator {
             return null;
         }
     }
+
+    public static String generateToken(String userId) {
+
+        System.out.println("Generated Token for '" + userId + "'.");
+
+        Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+        return JWT.create()
+                .withSubject(userId) // Store user ID in the subject claim
+                .withExpiresAt(new Date(System.currentTimeMillis() + 600000)) // 1/2 hour expiration
+                .sign(algorithm);
+    }
+
 }

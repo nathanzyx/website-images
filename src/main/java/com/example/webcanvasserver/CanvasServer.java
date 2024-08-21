@@ -1,20 +1,14 @@
 package com.example.webcanvasserver;
 
 
-import com.google.gson.Gson;
+import com.example.login.TokenManager;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
 import java.util.*;
-
-import static com.example.util.CanvasAPIHandler.saveCanvas;
-import static com.example.util.CanvasAPIHandler.checkCanvasExists;
-import static com.example.util.CanvasAPIHandler.getCanvas;
-
 
 
 //@ServerEndpoint(value="/ws/{canvasID}")
@@ -31,7 +25,7 @@ public class CanvasServer {
         String token = session.getRequestParameterMap().get("token").get(0);
 
         // Validate token and get the userId
-        String userId = TokenValidator.validateToken(token);
+        String userId = TokenManager.validateToken(token);
         if (userId == null) {
             // Invalid token, close the WebSocket connection
             session.close(new CloseReason(CloseReason.CloseCodes.CANNOT_ACCEPT, "Invalid token"));

@@ -3,7 +3,8 @@ const formData = {
     password: 'testpassword'
 };
 
-fetch('http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/api/auth/login', {
+// fetch('http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/api/auth/login', {
+fetch('http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/a/auth/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

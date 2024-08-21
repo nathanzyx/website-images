@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.account.login;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;

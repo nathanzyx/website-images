@@ -1,7 +1,7 @@
 package com.example.webcanvasserver;
 
 
-import com.example.login.TokenManager;
+import com.example.account.login.TokenManager;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;

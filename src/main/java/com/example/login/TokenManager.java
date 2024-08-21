@@ -11,8 +11,15 @@ import com.auth0.jwt.JWTCreator.Builder;
 import java.util.Date;
 
 public class TokenManager {
+
+    // SECRET_KEY to sign the token
     private static final String SECRET_KEY = "root";
 
+
+    /*
+    validateToken() valida
+
+     */
     public static String validateToken(String token) {
         try {
             // Create a JWT verifier
@@ -27,7 +34,7 @@ public class TokenManager {
 
             System.out.println("validateToken: Validated token, user is '" + userId + "'.");
 
-            return userId; // Assuming the user ID is stored in the subject field
+            return userId;
 
         } catch (JWTVerificationException e) {
             return null;

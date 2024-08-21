@@ -1,6 +1,7 @@
 package com.example.login;
 
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Response;
 import jakarta.json.JsonObject;
 import jakarta.json.Json;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-@Path("/auth")
+@Path("/login")
 public class AuthService {
 
     /*
@@ -22,7 +23,7 @@ public class AuthService {
         - returns the result of the login, generates and sends client if the login is a success
      */
     @POST
-    @Path("/login")
+//    @Path("/login")
     @Consumes("application/json")
     @Produces("application/json")
     public Response login(String jsonBody) {
@@ -49,8 +50,8 @@ public class AuthService {
 
     /*
     authenticateUser() function returns whether the given password for a username matches that stored in the mySQL database
-
-
+        - uses given database credentials to connect to and verify that the passwords match
+        - returns the result of the passwords matching as a boolean
      */
     private boolean authenticateUser(String username, String password) {
         // Database credentials
@@ -82,7 +83,6 @@ public class AuthService {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 

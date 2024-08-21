@@ -1,30 +1,75 @@
-const formData = {
-    username: 'testuser',
-    password: 'testpassword'
-};
+// const formData = {
+//     username: 'testuser',
+//     password: 'testpassword'
+// };
+
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+
+    // Retrieve the username and password from the form
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Create an object to send as JSON
+    const formData = {
+        username: username,
+        password: password
+    };
+
+    // Send the data to the server
+    fetch('http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Login failed');
+            }
+        })
+        .then(data => {
+            console.log('Login successful! Token:', data.token);
+            localStorage.setItem('authToken', data.token);
+            // Store token or proceed with authenticated actions
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+
+
+
+
+
+
+
 
 // fetch('http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/api/auth/login', {
-fetch('http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/a/auth/login', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-})
-    .then(response => {
-        console.log(formData);
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Login failed');
-        }
-    })
-    .then(data => {
-        console.log('Login successful! Token:', data.token);
-        localStorage.setItem('authToken', data.token);
-        // Store token or proceed with authenticated actions
-    })
-    .catch(error => console.error('Error:', error));
+// fetch('http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/auth/login', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(formData)
+// })
+//     .then(response => {
+//         console.log(formData);
+//         if (response.ok) {
+//             return response.json();
+//         } else {
+//             throw new Error('Login failed');
+//         }
+//     })
+//     .then(data => {
+//         console.log('Login successful! Token:', data.token);
+//         localStorage.setItem('authToken', data.token);
+//         // Store token or proceed with authenticated actions
+//     })
+//     .catch(error => console.error('Error:', error));
 
 
 
@@ -32,7 +77,8 @@ document.getElementById('token').addEventListener('click', function() {
     const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
 
     if (token) {
-        fetch(`http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/api/auth/validateToken?token=${encodeURIComponent(token)}`, {
+        // fetch(`http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/api/auth/validateToken?token=${encodeURIComponent(token)}`, {
+        fetch(`http://localhost:8080/WSCanvasServer-1.0-SNAPSHOT/auth/login/validateToken?token=${encodeURIComponent(token)}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

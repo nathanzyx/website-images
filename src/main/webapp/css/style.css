@@ -1,532 +1,147 @@
-/* Reset default margin, padding, and list style */
-body, h1, h2, h3, ul, li, p {
-    margin: 0;
+*,
+*:before,
+*:after {
     padding: 0;
-    list-style: none;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-/* Define color variables for the site */
-:root {
-    /* Site Color Scheme 2 */
-    --site-color1: #942800;
-    --site-color1-hover: #55626c;
-    --site-color2: #131721;
-    --site-color3: #e6ecff;
-    --site-color4: #9d9d9d;
-
-    --site-header1: #737f8c;
-
-    --site-input1: #ffffff;
-    --site-button1: #576372;
-    --site-button1-hover: #7e8ca1;
-
-    --site-warning1: #cbcbcb;
-}
-
-/* Styles for the body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
+    background-color: #080710;
 }
 
-/* Styles for header and footer */
-header {
-    background-color: var(--site-color1);
-    color: white;
-    padding: 10px 10px;
-    text-align: center;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer {
-
-    background-color: var(--site-color1);
-    color: white;
-    padding: 10px 20px;
-    /*padding: 30px 30px;*/
-    text-align: center;
-    box-sizing: border-box;
-}
-
-/* Styles for navigation links */
-header nav a, footer a {
-    color: white;
-    text-decoration: none;
-    margin-right: 15px;
-}
-
-/* Styles for navigation container */
-header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-#canvas {
-    cursor: pointer;
-}
-
-#guide {
-    display: grid;
-    pointer-events: none;
+.background {
+    width: 430px;
+    height: 520px;
     position: absolute;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
 }
 
-#pop-up {
-    display: none;
-    position: fixed;
+.background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape:first-child {
+    /*background: linear-gradient(#1845ad, #23a2f6);*/
+    background: linear-gradient(#5f75a2, #ffffff);
+    left: -80px;
+    top: -80px;
+}
+
+.shape:last-child {
+    /*background: linear-gradient(to right, #ff512f, #f09819);*/
+    background: linear-gradient(to right, #347a52, #ffffff);
+    right: -60px;
+    bottom: -70px;
+}
+
+form {
+    height: 590px;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-    z-index: 1000;
-}
-
-#guide div {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-
-
-
-/* Styles for the main chat container */
-#chat-container {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    padding-bottom: 50px;
-    margin-bottom: 0;
-    width: 100%;
-}
-
-/* Styles for the room list */
-#canvas-login {
-    background-color: var(--site-color2);
-    padding: 20px;
-    width: 12%;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 120px);
-    margin-bottom: 0;
-}
-
-/* Styles for room list heading */
-#canvas-login h3 {
-    flex: 1;
-    color: white;
-}
-
-/* Styles for room list items */
-#canvas-login ul {
-    overflow-y: auto;
-}
-
-/* Styles for side buttons container */
-.side-button-container {
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: auto;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-/* Styles for side buttons */
-.side-button {
-    background-color: var(--site-color1);
-    color: white;
-    border: none;
-    padding: 10%;
-    border-radius: 4px;
-    margin: 1%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.refresh {
-    width: 10%;
-    font-size: 170%;
-}
-
-.newRoom {
-    /*width: 10%;*/
-    font-size: 120%;
-}
-
-/* Styles for side buttons on hover */
-.side-button:hover {
-    background-color: var(--site-color1-hover);
-}
-
-/* Styles for rooms list container */
-.rooms-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    width: 30%;
-}
-
-/* Styles for rooms list items */
-.rooms-list li {
-    margin-bottom: .5%;
-}
-
-/* Styles for individual rooms list buttons */
-.rooms-list-button {
-    background-color: white;
-    color: black;
-    text-align: center;
-    border-color: transparent;
-    flex: 1;
-    max-width: 200px;
-    margin: 5px;
-    border-radius: 4px;
-    align-content: center;
-    font-size: 150%;
-}
-
-/* Styles for rooms list buttons on hover */
-.rooms-list-button:hover {
-    background-color: #e0e0e0;
-    font-size: 170%;
-}
-
-/* Styles for room buttons */
-.room-button {
-    background: none;
-    color: black;
-    text-align: left;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-    cursor: pointer;
-    border: none;
-    display: block;
-}
-
-/* Styles for room buttons on hover */
-.room-button:hover {
-    text-decoration: underline;
-}
-
-#space {
-    display: flex;
-    width: 20%;
-}
-
-#space2 {
-    display: flex;
-    width: 20%;
-}
-
-/* Styles for the chat room container */
-#chat-room {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
-/* Styles for chat room buttons */
-#chat-room button {
-    background-color: var(--site-color1);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-}
-
-/* Styles for chat room buttons on hover */
-#chat-room button:hover {
-    background-color: var(--site-color1-hover);
-}
-
-/* Styles for command container */
-#command-container {
-    background-color: var(--site-color1-hover);
-    color: #0d1117;
-    padding: 20px;
-    width: 15%;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 120px);
-    margin-bottom: 0;
-    font-family: 'Courier New', Courier, monospace;
-    flex: 1;
-}
-
-/* Styles for command container list */
-#command-container ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    box-sizing: border-box;
-}
-
-/* Styles for command container list items */
-#command-container ul li {
-    background-color: #e7e7e7;
-    padding: 10px;
-    margin-bottom: 10px;
     border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/* Styles for footer */
-footer {
-    background-color: var(--site-color1);
-    color: white;
+form * {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+form h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
     text-align: center;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+}
+
+form h2 {
+    font-size: 22px;
+    font-weight: 500;
     margin: 0;
-    height: 40px;
-    position: fixed;
-    z-index: 1000;
-}
-
-/* Styles for navigation links */
-header nav a.nav-link {
-    /*color: white;*/
-    color: var(--site-color3);
-    text-decoration: none;
-    margin-right: 15px;
-    font-size: 1em;
-    font-weight: normal;
-}
-
-/* Styles for text area */
-textarea {
-    width: 90%;
-    height: 100%;
-    padding: 10px;
-}
-
-/* Styles for input */
-#input {
-    width: 90%;
-    padding: 10px;
-}
-
-
-
-/* Styles for active navigation links on hover */
-header nav a.nav-link:not(.active):hover {
-    text-decoration: underline;
-}
-
-/* Styles for active navigation links */
-header nav a.nav-link.active {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: var(--site-color3);
-}
-
-/* Styles for about text */
-.about-text {
-    color: var(--site-color2);
-}
-
-/* Styles for about heading */
-.about-heading {
-    color: var(--site-color1);
-}
-
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
-    header, footer {
-        padding: 10px;
-    }
-
-    #canvas-login {
-        width: 100%;
-        order: -1;
-    }
-
-    #chat-container {
-        flex-direction: column-reverse;
-    }
-
-    footer {
-        position: relative;
-    }
-}
-
-h1, h2, h3, p {
-    color: #FFFFFF;
-}
-
-nav a {
-    color: #FFFFFF;
-}
-
-nav a.active {
-    color: #FFFFFF;
-}
-
-#canvasName,
-#canvasPassword,
-#canvasPasswordButton {
-    /*display: none;*/
-}
-
-.about-title {
-    color: var(--site-color1-hover);
-}
-
-.names {
-    font-weight: bold;
-}
-
-.canvasInfoBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 150%;
-
-    padding: 5px;
-    min-height: 10%;
-    max-height: 10%;
-    color: var(--site-color3);
-    background-color: var(--site-header1);
-    border-radius: 10px;
-}
-
-.canvasLoginInput {
-    border: none;
-    padding: 5px;
-    color: var(--site-color2);
-    background-color: var(--site-input1);
-    border-radius: 10px;
-}
-.canvasLoginButton {
-    border: none;
-    padding: 10px;
-    color: var(--site-color3);
-    background-color: var(--site-button1);
-    border-radius: 10px;
-
-    text-decoration-thickness: 10%;
-}
-.canvasLoginButton:hover {
-    background-color: var(--site-button1-hover);
-    border-radius: 10px;
-}
-
-#canvasEditorBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 150%;
-
-    max-height: 10%;
-    padding: 10px;
-    color: var(--site-color2);
-    background-color: var(--site-button1);
-    border-radius: 10px;
-}
-
-#canvasNameBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 300%;
-
-    padding-bottom: 10%;
-    min-height: 10%;
-    max-height: 10%;
-    /*background-color: var(--site-header1);*/
-    border-radius: 10px;
-}
-
-
-#warningDiv {
-    padding: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--site-color2);
-    background-color: var(--site-warning1);
-    border-radius: 15px;
-    width: 80%
-}
-
-#warningDiv h2 {
     text-align: center;
 }
 
-
-
-#logo {
-    width: 100px;
-    height: auto;
-    vertical-align: middle;
-    border-radius: 10%;
-    order: 0;
-    margin-right: 20px;
+label {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.logout {
-    order: 3;
-    background-color: #f44336; /* Red */
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
+input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+::placeholder {
+    color: #e5e5e5;
+}
+
+button {
+    margin-top: 20px; /* Adjusted for spacing */
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
     cursor: pointer;
-    width: auto;
-    opacity: 0.9;
-    border-radius: 30px
 }
 
-.logout:hover {
-    opacity: 1;
+.separator {
+    margin: 10px 0;
+    padding-top: 20px;
+    text-align: center;
+    /*align-self: center;*/
+    /*align-items: center;*/
+    /*align-content: center;*/
 }
 
-#canvas-container {
-    margin-top: 50px; /* Adjust this value as needed */
+.social {
+    margin-top: 30px;
+    display: flex;
 }
 
-#ColorSelector {
-    margin-top: 10px;
+.social div {
+    background-color: rgba(255, 255, 255, 0.27);
+    width: 150px;
+    border-radius: 3px;
+    padding: 5px 10px 10px 5px;
+    color: #eaf0fb;
+    text-align: center;
+}
+
+.social div:hover {
+    background-color: rgba(255, 255, 255, 0.47);
+}
+
+.social i {
+    margin-right: 10px;
 }

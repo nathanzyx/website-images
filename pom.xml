@@ -6,10 +6,10 @@
 
     <groupId>com.example</groupId>
 <!--    <artifactId>WSChatServer</artifactId>-->
-    <artifactId>WSCanvasServer</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>RCImages</artifactId>
+    <version>0.1</version>
 <!--    <name>WSChatServer</name>-->
-    <name>WSCanvasServer</name>
+    <name>RCImages</name>
     <packaging>war</packaging>
 
     <properties>

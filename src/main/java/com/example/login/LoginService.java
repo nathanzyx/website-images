@@ -1,7 +1,6 @@
 package com.example.login;
 
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.core.Response;
 import jakarta.json.JsonObject;
 import jakarta.json.Json;
@@ -14,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 @Path("/login")
-public class AuthService {
+public class LoginService {
 
     /*
     /auth/login is called by client along with Json data including username and password

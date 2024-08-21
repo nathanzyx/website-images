@@ -62,7 +62,8 @@ public class AuthService {
                 return password.equals(storedPassword); // Direct comparison
             }
 
-            System.out.println("User Authentication Called.");
+            System.out.print("User Authentication Called.");
+            System.out.println("authenticateUser");
 
             resultSet.close();
             statement.close();

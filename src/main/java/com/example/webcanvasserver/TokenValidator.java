@@ -18,7 +18,12 @@ public class TokenValidator {
             DecodedJWT jwt = verifier.verify(token);
 
             // Extract user ID from claims
-            return jwt.getSubject(); // Assuming the user ID is stored in the subject field
+            String userId = jwt.getSubject();
+
+            System.out.println("validateToken: Validated token, user is: " + userId);
+
+            return userId; // Assuming the user ID is stored in the subject field
+
         } catch (JWTVerificationException e) {
             return null;
         } catch (Exception e) {

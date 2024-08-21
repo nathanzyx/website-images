@@ -23,7 +23,7 @@ public class LoginEndpoint {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             System.out.println("Connected to mySQL: " + DB_URL);
-
+            System.out.println("authenticateUser");
             // SQL query to select the user by username
             String query = "SELECT password FROM users WHERE username = ?";
             PreparedStatement statement = connection.prepareStatement(query);

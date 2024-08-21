@@ -11,6 +11,7 @@ public class TokenGenerator {
     private static final String SECRET_KEY = "root";
 
     public static String generateToken(String userId) {
+        System.out.println("generateToken");
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
         return JWT.create()
                 .withSubject(userId) // Store user ID in the subject claim

@@ -43,7 +43,7 @@ public class SignupService {
 
         // Validate username
         if (!isValidUsernameOrPassword(username)) {
-            validationErrors.put("username","Invalid Username! (max length: 25 characters)");
+            validationErrors.put("username","25 Character Limit!");
         } else if (SQLFieldTaken("username", username)) {
             validationErrors.put("username","Username is already in use!");
         }
@@ -51,29 +51,29 @@ public class SignupService {
 
         // Validate password
         if (!isValidUsernameOrPassword(password)) {
-            validationErrors.put("password","Invalid Password! (max length: 25 characters)");
+            validationErrors.put("password","25 Character Limit!");
         }
 
         // Validate email
         if (!isValidEmail(email)) {
             validationErrors.put("email","Invalid Email!");
         } else if (SQLFieldTaken("email", email)) {
-            validationErrors.put("email","Email is already in use!");
+            validationErrors.put("email","Email is Already in Use!");
         }
 
         // Validate firstname
         if (!isValidName(firstname)) {
-            validationErrors.put("firstname","Invalid First Name! (max length: 25 characters)");
+            validationErrors.put("firstname","25 Character Limit!");
         }
 
         // Validate lastname
         if (!isValidName(lastname)) {
-            validationErrors.put("lastname","Invalid Last Name! (max length: 25 characters)");
+            validationErrors.put("lastname","25 Character Limit!");
         }
 
         // Validate birthdate
         if (!isValidBirthdate(birthdate)) {
-            validationErrors.put("birthdate","Invalid Birth Date! (users must be over 13 years of age)");
+            validationErrors.put("birthdate","You Must be 13+ Years Old!");
         }
 
 
@@ -163,17 +163,42 @@ public class SignupService {
 
         String query = "SELECT 1 FROM users WHERE " + field + " = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, entry);
+        try {
+            // Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
+            // Establish the connection and perform the query
+            try (Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, entry);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    return resultSet.next();
+                }
+            } catch (SQLException e) {
+                // Log SQL exceptions
+                System.err.println("SQL error occurred while checking field: " + e.getMessage());
+                e.printStackTrace();
+                return false;
             }
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException e) {
+            // Log exception if the driver class is not found
+            System.err.println("JDBC Driver not found: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
+
+//        try (Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
+//             PreparedStatement statement = connection.prepareStatement(query)) {
+//            statement.setString(1, entry);
+//
+//            try (ResultSet resultSet = statement.executeQuery()) {
+//                return resultSet.next();
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return false;
+//        }
 
 //        try {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
@@ -209,20 +234,57 @@ public class SignupService {
 
         String query = "INSERT INTO users (username, password, email, firstname, lastname, birthdate) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, username);
-            statement.setString(2, password); // Hash the password before storing it
-            statement.setString(3, email);
-            statement.setString(4, firstname);
-            statement.setString(5, lastname);
-            statement.setString(6, birthdate);
 
-            return statement.executeUpdate() > 0;
-        } catch (SQLException e) {
+        try {
+            // Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish the connection
+            try (Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+
+                // Set the parameters
+                statement.setString(1, username);
+                statement.setString(2, password); // Hash the password before storing it
+                statement.setString(3, email);
+                statement.setString(4, firstname);
+                statement.setString(5, lastname);
+                statement.setString(6, birthdate);
+
+                // Execute the query and check if the insert was successful
+                return statement.executeUpdate() > 0;
+
+            } catch (SQLException e) {
+                // Log the exception with a message for better debugging
+                System.err.println("Error creating account: " + e.getMessage());
+                e.printStackTrace();
+                return false;
+            }
+        } catch (ClassNotFoundException e) {
+            // Log the exception if the driver class is not found
+            System.err.println("JDBC Driver not found: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
+
+
+//        try{
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            try (Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
+//                 PreparedStatement statement = connection.prepareStatement(query)) {
+//                statement.setString(1, username);
+//                statement.setString(2, password); // Hash the password before storing it
+//                statement.setString(3, email);
+//                statement.setString(4, firstname);
+//                statement.setString(5, lastname);
+//                statement.setString(6, birthdate);
+//
+//                return statement.executeUpdate() > 0;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return false;
+//        }
 
 //        try {
 //            Class.forName("com.mysql.cj.jdbc.Driver");

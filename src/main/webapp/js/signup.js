@@ -49,20 +49,35 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         });
 });
 
+
 // Function to display validation errors on the form
 function displayValidationErrors(errors) {
-    // Clear previous errors
-    const errorElements = document.querySelectorAll('.error-message');
-    errorElements.forEach(el => el.textContent = '');
-
-    // Display new errors
     for (const [field, message] of Object.entries(errors)) {
-        const fieldElement = document.getElementById(field);
-        if (fieldElement) {
-            const errorElement = fieldElement.nextElementSibling; // Assuming the error message is next to the input field
-            if (errorElement && errorElement.classList.contains('error-message')) {
-                errorElement.textContent = message;
-            }
+        const errorElement = document.getElementById(`${field}Error`);
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
         }
     }
 }
+
+
+// Function to hide error message when the user starts typing
+function setupFieldListeners() {
+    const fields = ['username', 'password', 'email', 'firstname', 'lastname', 'birthdate'];
+    fields.forEach(field => {
+        const input = document.getElementById(field);
+        if (input) {
+            input.addEventListener('input', () => {
+                const errorElement = document.getElementById(`${field}Error`);
+                if (errorElement) {
+                    errorElement.textContent = '';
+                    errorElement.style.display = 'none';
+                }
+            });
+        }
+    });
+}
+
+// Call the function to set up the event listeners
+setupFieldListeners();

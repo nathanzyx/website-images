@@ -35,9 +35,18 @@ body {
 
 .shape:last-child {
     /*background: linear-gradient(to right, #ff512f, #f09819);*/
-    background: linear-gradient(to right, #104f2b, #b2b2b2);
+    background: linear-gradient(to right, #17af57, #2d2d2d);
     right: -60px;
     bottom: -70px;
+}
+
+.error-message {
+    color: #ff5e5e;
+    font-size: 14px;
+    margin-top: -2px;
+    display: none;
+
+    height: 10px;
 }
 
 form {
@@ -84,6 +93,7 @@ label {
     display: block;
     /*margin-top: 30px;*/
     margin-top: 10px;
+    margin-bottom: -5px;
     font-size: 16px;
     font-weight: 500;
 }

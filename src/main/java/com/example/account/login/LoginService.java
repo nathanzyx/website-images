@@ -42,7 +42,11 @@ public class LoginService {
             return Response.ok().entity("{\"token\": \"" + token + "\"}").build();
         } else {
             // For incorrect login information
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            return Response
+                    .status(Response.Status.UNAUTHORIZED)
+                    .entity("{\"login\": \"Incorrect Username or Password\"}")
+                    .type("application/json") // Ensure the response is treated as JSON
+                    .build();
         }
     }
 

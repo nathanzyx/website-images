@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glassmorphism Login Form</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/signup.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -17,19 +17,25 @@
     <div class="shape"></div>
 </div>
 <form id="signupForm">
-    <h3>RCImages</h3>
+    <h3>Sign Up</h3>
 
     <label for="username">Username</label>
-    <input type="text" placeholder="Username" id="username">
+    <input type="text" placeholder="Username" id="username" required>
 
     <label for="password">Password</label>
-    <input type="text" placeholder="Password" id="password">
+    <input type="text" placeholder="Password" id="password" required>
 
     <label >Email</label>
-    <input type="email" placeholder="Email" id="email">
+    <input type="email" placeholder="Email" id="email" required>
+
+    <label >First Name</label>
+    <input type="text" placeholder="First Name" id="firstname" required>
+
+    <label >Last Name</label>
+    <input type="text" placeholder="Last Name" id="lastname" required>
 
     <label >Birth Date</label>
-    <input type="date" placeholder="BirthDate" id="birthdate">
+    <input type="date" placeholder="BirthDate" id="birthdate" required>
 
     <button type="submit">Sign Up</button>
 

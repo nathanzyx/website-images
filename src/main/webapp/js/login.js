@@ -12,7 +12,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     };
 
     // Send the data to the server
-    fetch('http://localhost:8080/RCImages-0.1/auth/login', {
+    fetch('http://localhost:8080/RCImages-0.1/account/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

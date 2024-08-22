@@ -1,8 +1,8 @@
-package com.example.account.login;
+package com.example.account;
 
 import jakarta.ws.rs.core.Application;
 import jakarta.ws.rs.ApplicationPath;
 
-@ApplicationPath("/auth")
+@ApplicationPath("/account")
 public class ApplicationLogin extends Application {
 }

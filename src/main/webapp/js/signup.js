@@ -1,10 +1,12 @@
 document.getElementById('signupForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
 
-    // Retrieve the username and password from the form
+    // Retrieve the form values
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const email = document.getElementById('email').value;
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
     const birthdate = document.getElementById('birthdate').value;
 
     // Create an object to send as JSON
@@ -12,11 +14,13 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         username: username,
         password: password,
         email: email,
+        firstname: firstname,
+        lastname: lastname,
         birthdate: birthdate
     };
 
     // Send the data to the server
-    fetch('http://localhost:8080/RCImages-0.1/auth/login', {
+    fetch('http://localhost:8080/RCImages-0.1/account/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -25,15 +29,40 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     })
         .then(response => {
             if (response.ok) {
-                return response.json();
+                return response.json(); // Parse JSON if response is okay
             } else {
-                throw new Error('Sign Up Successful');
+                return response.json().then(data => {
+                    throw new Error('Sign Up Failed: ' + JSON.stringify(data));
+                });
             }
         })
         .then(data => {
-            console.log('Sign Up successful! Token:', data.token);
-            localStorage.setItem('authToken', data.token);
-            // Store token or proceed with authenticated actions
+            // Handle the successful response
+            console.log('Sign Up successful! Message:', data.message);
+            // Optionally store any tokens or handle successful signup
+            // For example, redirect to a login page or show a success message
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error:', error.message);
+            // Display error messages
+            displayValidationErrors(JSON.parse(error.message.replace('Sign Up Failed: ', '')));
+        });
 });
+
+// Function to display validation errors on the form
+function displayValidationErrors(errors) {
+    // Clear previous errors
+    const errorElements = document.querySelectorAll('.error-message');
+    errorElements.forEach(el => el.textContent = '');
+
+    // Display new errors
+    for (const [field, message] of Object.entries(errors)) {
+        const fieldElement = document.getElementById(field);
+        if (fieldElement) {
+            const errorElement = fieldElement.nextElementSibling; // Assuming the error message is next to the input field
+            if (errorElement && errorElement.classList.contains('error-message')) {
+                errorElement.textContent = message;
+            }
+        }
+    }
+}

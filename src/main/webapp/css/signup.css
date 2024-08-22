@@ -49,6 +49,43 @@ body {
     height: 10px;
 }
 
+.success-message {
+    color: #8cff5e;
+    font-size: 14px;
+    /*margin-top: -2px;*/
+    display: none;
+    text-align: center;
+
+    height: 0px;
+}
+
+#loginLink {
+    color: #8cff5e;
+    font-size: 14px;
+    /*margin-top: -2px;*/
+    /*display: none;*/
+    text-align: center;
+
+    height: 0px;
+}
+
+
+
+.fade-out {
+    transition: opacity 0.5s ease-out;
+    opacity: 1;
+}
+
+.blurred {
+    background: linear-gradient(#5a5a5f7a, #5a5a5f7a);
+    color: #ffffff;
+    pointer-events: none;
+    filter: blur(0px);
+    opacity: .5;
+}
+
+
+
 form {
     height: 700px;
     width: 400px;

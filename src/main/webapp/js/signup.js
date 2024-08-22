@@ -19,6 +19,17 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         birthdate: birthdate
     };
 
+    // Apply blur and fade-out effect to the form fields
+    const fields = document.querySelectorAll('#signupForm input');
+    fields.forEach(field => {
+        field.classList.add('blurred', 'fade-out');
+    });
+
+    // Disable and apply blur effect to the signup button
+    const signupButton = document.querySelector('#signupForm button[type="submit"]');
+    signupButton.classList.add('blurred', 'fade-out');
+    signupButton.disabled = true;
+
     // Send the data to the server
     fetch('http://localhost:8080/RCImages-0.1/account/signup', {
         method: 'POST',
@@ -37,18 +48,51 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
             }
         })
         .then(data => {
-            // Handle the successful response
-            console.log('Sign Up successful! Message:', data.message);
-            // Optionally store any tokens or handle successful signup
-            // For example, redirect to a login page or show a success message
+            // Account Creation Successful:
+            notifyAccountCreation();
+
         })
         .catch(error => {
-            console.error('Error:', error.message);
-            // Display error messages
-            displayValidationErrors(JSON.parse(error.message.replace('Sign Up Failed: ', '')));
+            setTimeout(() => {
+                displayValidationErrors(JSON.parse(error.message.replace('Sign Up Failed: ', '')));
+
+                // Remove blur/fade effect from sign up button
+                signupButton.classList.remove('blurred', 'fade-out');
+                signupButton.disabled = false;
+
+                // Remove blur/fade effect from fields
+                const fields = document.querySelectorAll('#signupForm input');
+                fields.forEach(field => {
+                    field.classList.remove('blurred', 'fade-out');
+                });
+            }, 500);
         });
 });
 
+function notifyAccountCreation() {
+    const errorElement = document.getElementById('creationSuccess');
+    errorElement.style.display = 'block';
+
+    // Select all input fields and the submit button in the form
+    const inputs = document.querySelectorAll('#signupForm input');
+    const submitButton = document.querySelector('#signupForm button[type="submit"]');
+
+    // Apply the fade-out effect
+    inputs.forEach(input => {
+        input.classList.add('fade-out');
+    });
+    submitButton.classList.add('fade-out');
+
+    // Disable the inputs after the fade-out effect completes
+    setTimeout(() => {
+        inputs.forEach(input => {
+            input.disabled = true;
+            input.classList.add('blurred');
+        });
+        submitButton.disabled = true;
+        submitButton.classList.add('blurred');
+    }, 5); // Match the duration of the fade-out effect
+}
 
 // Function to display validation errors on the form
 function displayValidationErrors(errors) {
@@ -81,3 +125,34 @@ function setupFieldListeners() {
 
 // Call the function to set up the event listeners
 setupFieldListeners();
+
+
+// Blurs out Sign Up button until all fields are filled
+document.addEventListener('DOMContentLoaded', function() {
+    const signupButton = document.querySelector('button[type="submit"]');
+    const fields = ['username', 'password', 'email', 'firstname', 'lastname', 'birthdate'];
+
+    function checkFields() {
+        let allFilled = fields.every(field => {
+            const input = document.getElementById(field);
+            return input && input.value.trim() !== '';
+        });
+
+        if (allFilled) {
+            signupButton.classList.remove('blurred', 'fade-out');
+            signupButton.disabled = false;
+        } else {
+            signupButton.classList.add('blurred', 'fade-out');
+            signupButton.disabled = true;
+        }
+    }
+
+    // Add event listeners to all fields
+    fields.forEach(field => {
+        const input = document.getElementById(field);
+        input.addEventListener('input', checkFields);
+    });
+
+    // Initial check to set button state on page load
+    checkFields();
+});

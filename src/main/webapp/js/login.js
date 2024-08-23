@@ -32,6 +32,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             console.log('Login successful! Token:', data.token);
             localStorage.setItem('authToken', data.token);
             // Redirect or handle successful login
+            window.location.href = 'user.html';
         })
         .catch(error => {
             console.error('Error:', error.message);

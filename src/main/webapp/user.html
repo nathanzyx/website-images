@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Login Form</title>
+  <link rel="stylesheet" href="css/user.css">
+  <!--    <link rel="stylesheet" href="css/loginn.css">-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<script src="js/user.js" defer></script>
+
+<!-- BACKGROUND -->
+<div class="background">
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+ CREATE BUTTON
+<div class="create">
+  <div class="createButton"></div>
+</div>
+
+<div class="userWidget">
+  <h3 id="userWelcome">Username</h3>
+
+  <button id="settings">Settings</button>
+
+  <button id="upload">Upload</button>
+
+</div>
+
+<div class="uploadWidget" id="uploadWidget">
+  <button id="closeUploadWidget">X</button>
+  <h3 id="create">Upload Image</h3>
+  <form id="uploadForm" method="post" enctype="multipart/form-data">
+    <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
+    <button type="submit">Upload</button>
+  </form>
+</div>
+
+
+
+
+<div class="userContentWidget">
+  <div class="image-gallery">
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 3"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 3"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 3"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 3"></div>
+  </div>
+</div>
+
+</body>
+</html>

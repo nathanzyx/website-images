@@ -35,8 +35,20 @@ public class LoginService {
         boolean isAuthenticated = authenticateUser(username, password);
 
         if (isAuthenticated) {
+
+            // Get user_id from the database so that it can be stored inside the token
+            Integer userId = getUserId(username);
+
+            // If the user_id was not found or something went wrong while getting the user_id
+            if(userId == null) {
+                return Response
+                        .status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .entity("{\"user_id\": \"Error While Receiving Account Information\"}")
+                        .type("application/json") // Ensure the response is treated as JSON
+                        .build();
+            }
             // Generate a token for the authenticated user
-            String token = TokenManager.generateToken(username);
+            String token = TokenManager.generateToken(userId);
 
             // Return response to user with their signed token
             return Response.ok().entity("{\"token\": \"" + token + "\"}").build();
@@ -89,18 +101,53 @@ public class LoginService {
         return false;
     }
 
+    private int getUserId(String username) {
+        // Database credentials
+        String url = "jdbc:mysql://localhost:3306/canvas?useSSL=false";
+        String dbUser = "root";
+        String dbPassword = "root";
 
-    @GET
-    @Path("/validateToken")
-    @Produces("application/json")
-    public Response validateToken(@QueryParam("token") String token) {
-        boolean isValid = TokenManager.validateToken(token) != null;
-        if (isValid) {
-            return Response.ok().entity("{\"valid\": true}").build();
-        } else {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("{\"valid\": false}").build();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, dbUser, dbPassword);
+
+            // Query username and password
+            String query = "SELECT user_id FROM users WHERE username = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, username);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                // Return the user_id of that username
+//                String storedUserId = resultSet.getString("user_id");
+                return resultSet.getInt("user_id");
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
+        return -1;
     }
+
+
+
+
+//    @GET
+//    @Path("/validateToken")
+//    @Produces("application/json")
+//    public Response validateToken(@QueryParam("token") String token) {
+//        boolean isValid = TokenManager.validateToken(token) != null;
+//        if (isValid) {
+//            return Response.ok().entity("{\"valid\": true}").build();
+//        } else {
+//            return Response.status(Response.Status.UNAUTHORIZED).entity("{\"valid\": false}").build();
+//        }
+//    }
 }
 
 

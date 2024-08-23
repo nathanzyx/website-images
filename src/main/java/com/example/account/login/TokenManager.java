@@ -19,7 +19,7 @@ public class TokenManager {
     validateToken() valida
 
      */
-    public static String validateToken(String token) {
+    public static int validateToken(String token) {
         try {
             // Create a JWT verifier
             Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
@@ -31,24 +31,25 @@ public class TokenManager {
             // Extract user ID from claims
             String userId = jwt.getSubject();
 
-            System.out.println("validateToken: Validated token, user is '" + userId + "'.");
+            System.out.println("validateToken: Validated token, user_id is '" + userId + "'.");
 
-            return userId;
+            // Return the integer value of the userId
+            return Integer.parseInt(userId);
 
         } catch (JWTVerificationException e) {
-            return null;
+            return -1;
         } catch (Exception e) {
-            return null;
+            return -1;
         }
     }
 
-    public static String generateToken(String userId) {
+    public static String generateToken(int userId) {
 
         System.out.println("Generated Token for '" + userId + "'.");
 
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
         return JWT.create()
-                .withSubject(userId) // Store user ID in the subject claim
+                .withSubject(String.valueOf(userId)) // Store user_id in the subject claim
                 .withExpiresAt(new Date(System.currentTimeMillis() + 600000)) // 1/2 hour expiration
                 .sign(algorithm);
     }

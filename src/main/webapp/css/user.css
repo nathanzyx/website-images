@@ -1,0 +1,334 @@
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080710;
+}
+
+.background {
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+.widgetBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /*display: none;*/
+    left: 50%;
+    top: 50%;
+    z-index: 9;
+}
+
+.background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape:first-child {
+    /*background: linear-gradient(#1845ad, #23a2f6);*/
+    background: linear-gradient(#5f75a2, #2d2d2d);
+    left: -50%;
+    top: -10%;
+}
+
+.shape:last-child {
+    /*background: linear-gradient(to right, #ff512f, #f09819);*/
+    background: linear-gradient(to right, #17af57, #2d2d2d);
+    right: -60px;
+    bottom: -70px;
+}
+
+.shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+
+
+.create .createButton {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.createButton {
+    /*background: linear-gradient(to right, #ff512f, #f09819);*/
+    background: linear-gradient(#fdfdfd, #9b9b9b);
+    right: 1%;
+    top: 2%;
+}
+
+
+.error-message {
+    color: #ff5e5e;
+    font-size: 14px;
+    /*margin-top: 0px;*/
+    display: none;
+
+    text-align: center;
+
+    height: 4px;
+}
+
+
+/* USER WIDGET SECTION */
+.userWidget {
+    height: 65%;
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 11.5%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+    /*padding: 2% 2%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.userWidget * {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.userWidget h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+
+    margin-bottom: 30%;
+
+    /*padding-top: -80%;*/
+}
+.userWidget h2 {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+}
+.userWidget button {
+    margin-top: 30%;
+    width: 80%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+}
+
+/* CREATE WIDGET SECTION */
+.uploadWidget {
+    height: 50%;
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+
+    top: 25%;
+    left: 25%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+
+    cursor: move;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+}
+.uploadWidget * {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.uploadWidget h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+.uploadWidget h2 {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+}
+/*.uploadWidget button {*/
+/*    margin-top: 20px; !* Adjusted for spacing *!*/
+/*    width: 100%;*/
+/*    background-color: #ffffff;*/
+/*    color: #080710;*/
+/*    padding: 15px 0;*/
+/*    font-size: 18px;*/
+/*    font-weight: 600;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*}*/
+#closeUploadWidget {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* USER CONTENT WIDGET SECTION */
+.userContentWidget {
+    height: 60%;
+    width: 60%;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    right: -20%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    /*padding: 50px 35px;*/
+    /*overflow-x: auto; !* Enable horizontal scrolling *!*/
+    white-space: nowrap; /* Prevent wrapping of images */
+
+    overflow: hidden;
+    z-index: 5;
+}
+
+/* Container for the image gallery */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll; /* Enable vertical scrolling */
+    max-height: 500px; /* Adjust height as needed */
+    padding: 10px;
+    gap: 10px;
+    scrollbar-width: none; /* For Firefox */
+}
+
+.image-gallery::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+}
+
+/* Optional: hide scrollbar but show on hover */
+.image-gallery::-webkit-scrollbar {
+    width: 0; /* Optional: scrollbar width */
+    height: 0; /* Optional: scrollbar height */
+}
+
+.image-gallery::-webkit-scrollbar-thumb {
+    background: transparent; /* Optional: scrollbar color */
+}
+
+/* Style for each image item */
+.image-item {
+    flex: 1 1 calc(25% - 20px); /* 3 images per row, with a gap */
+    width: 200px; /* Fixed width */
+    height: 200px; /* Fixed height */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px; /* Optional: add rounded corners */
+    overflow: hidden; /* Hide overflow */
+}
+/*.image-item {*/
+/*    flex: 1 1 calc(33.333% - 20px); !* 3 images per row, with a gap *!*/
+/*    box-sizing: border-box;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/* Style for images */
+.image-item img {
+    width: 100%; /* Adjust width to fit within the container */
+    height: 100%;
+    /*border-radius: 8px; !* Optional: add rounded corners *!*/
+    object-fit: scale-down;
+}
+
+label {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+::placeholder {
+    color: #e5e5e5;
+}
+
+.separator {
+    margin: 10px 0;
+    padding-top: 20px;
+    text-align: center;
+    /*align-self: center;*/
+    /*align-items: center;*/
+    /*align-content: center;*/
+}
+
+.social {
+    margin-top: 30px;
+    display: flex;
+}
+
+.social div {
+    background-color: rgba(255, 255, 255, 0.27);
+    width: 150px;
+    border-radius: 3px;
+    padding: 5px 10px 10px 5px;
+    color: #eaf0fb;
+    text-align: center;
+}
+
+.social div:hover {
+    background-color: rgba(255, 255, 255, 0.47);
+}
+
+.social i {
+    margin-right: 10px;
+}

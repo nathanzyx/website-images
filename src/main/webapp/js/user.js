@@ -1,15 +1,116 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const elementsInput = document.getElementById('elements');
+    const elementSuggestions = document.getElementById('elementSuggestions');
+    const selectedElementsDiv = document.getElementById('selectedElements');
+
+    // Sample data, replace with actual data from your server
+    const token = localStorage.getItem('authToken');
+    let elementList = [];
+
+
+    function addElement(element) {
+        // Check if the element is already in the list
+        const existingElements = Array.from(selectedElementsDiv.getElementsByTagName('span'))
+            .map(span => span.textContent);
+
+        if (!existingElements.includes(element)) {
+            const span = document.createElement('span');
+            span.textContent = element;
+            span.addEventListener('click', () => {
+                selectedElementsDiv.removeChild(span);
+            });
+            selectedElementsDiv.appendChild(span);
+        } else {
+            console.log('Element already added');
+        }
+    }
+
+    // document.addEventListener('click', (event) => {
+    //     if (!event.target.matches('#elements')) {
+    //         elementSuggestions.classList.remove('show');
+    //     }
+    // });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const elementsInput = document.getElementById('elements');
+    const elementSuggestions = document.getElementById('elementSuggestions');
+    const selectedElementsDiv = document.getElementById('selectedElements');
+
+    // Sample data, replace with actual data from your server
+    const elementList = ['Helix', 'Loop', 'Inversion', 'Drop', 'Twist'];
+
+    elementsInput.addEventListener('keydown', (event) => {
+        if(event.key === 'Enter') {
+            event.preventDefault();
+            addElement(elementsInput.value);
+        }
+    })
+
+    function addElement(element) {
+        const span = document.createElement('span');
+        span.textContent = element;
+        span.addEventListener('click', () => {
+            selectedElementsDiv.removeChild(span);
+        });
+        selectedElementsDiv.appendChild(span);
+        elementsInput.value = '';
+    }
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.matches('#elements')) {
+            elementSuggestions.classList.remove('show');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
     const widget = document.getElementById('uploadWidget');
     const uploadButton = document.getElementById('upload');
     const closeButton = document.getElementById('closeUploadWidget');
     const uploadForm = document.getElementById('uploadForm');
 
-    // Show the widget when the upload button is clicked
+    const elementsInput = document.getElementById('elements');
+    const elementSuggestions = document.getElementById('elementSuggestions');
+    const selectedElementsDiv = document.getElementById('selectedElements');
+    const coasterInput = document.getElementById('coaster');
+    const imageInput = document.getElementById('imageFile');
+
+    function addElement(element) {
+        if (!selectedElements.includes(element)) {
+            selectedElements.push(element);
+
+            // Update the UI to show the selected element
+            const li = document.createElement('li');
+            li.textContent = element;
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.addEventListener('click', () => {
+                selectedElements = selectedElements.filter(el => el !== element);
+                li.remove();
+            });
+            li.appendChild(removeButton);
+            elementList.appendChild(li);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Show Upload Widget
     uploadButton.addEventListener('click', () => {
         widget.style.display = 'block';
     });
 
-    // Hide the widget and center when the close button is clicked
+    // Close Upload Widget
     closeButton.addEventListener('click', () => {
         widget.style.display = 'none';
 
@@ -44,12 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
             widget.style.top = `${Math.max(minY, Math.min(maxY, newY))}px`;
         }
     });
-    // document.addEventListener('mousemove', (e) => {
-    //     if (isDragging) {
-    //         widget.style.left = `${e.clientX - offsetX}px`;
-    //         widget.style.top = `${e.clientY - offsetY}px`;
-    //     }
-    // });
 
     document.addEventListener('mouseup', () => {
         isDragging = false;
@@ -59,9 +154,59 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const token = localStorage.getItem('authToken');
+        // const token = localStorage.getItem('authToken');
+        // // const formData = new FormData(uploadForm);
+        //
+        // // Append selected elements to form data
+        // const coasterName = coasterInput.value;
+        //
+        // const elements = selectedElementsDiv.getElementsByTagName('span');
+        // const elementData = [];
+        //
+        // // Add every element from each span into the
+        // for(let i = 0; i < elements.length; i++) {
+        //     elementData.push(elements[i].textContent);
+        // }
+        //
+        // const formData = {
+        //     name: coasterName,
+        //     elements: elementData
+        // }
+        //
+        // console.log(formData);
 
-        const formData = new FormData(uploadForm);
+
+
+        const token = localStorage.getItem('authToken');
+        const formData = new FormData(uploadForm); // FormData constructor with the form element
+
+        const coasterName = coasterInput.value;
+
+        const elements = selectedElementsDiv.getElementsByTagName('span');
+        const elementData = [];
+
+        // Add each element from each span into the array
+        for (let i = 0; i < elements.length; i++) {
+            elementData.push(elements[i].textContent);
+        }
+
+        // Convert the elements array to a JSON string
+        const selectedElementsJSON = JSON.stringify(elementData);
+
+        // Append the coaster name and elements JSON string to the FormData
+        formData.append('name', coasterName);
+        formData.append('elements', selectedElementsJSON);
+
+        // Append the image file (assuming you have a file input with id "imageFile")
+        const fileInput = document.getElementById('imageFile');
+        const files = fileInput.files;
+
+        for(let i = 0; i < files.length; i++) {
+            formData.append('images[]', files[i]);
+        }
+
+        // const imageFile = document.getElementById('imageFile').files[0];
+        // formData.append('image', imageFile);
 
         fetch('http://localhost:8080/RCImages-0.1/account/upload', {  // Replace '/upload' with your actual server endpoint
             method: 'POST',
@@ -96,100 +241,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-
-
-//
-// document.getElementById('upload').addEventListener('click', function() {
-//     const uploadWidget = document.getElementById('uploadWidget');
-//     uploadWidget.disabled = false;
-//     uploadWidget.style.display = 'block'; // Show the widget
-//     enableDragging(uploadWidget); // Enable dragging
-// });
-//
-// document.getElementById('closeUploadWidget').addEventListener('click', function() {
-//     const uploadWidget = document.getElementById('uploadWidget');
-//     uploadWidget.style.display = 'none';
-//     uploadWidget.disabled = true;
-// });
-//
-// function enableDragging(widget) {
-//     let isDragging = false;
-//     let offsetX, offsetY;
-//
-//     widget.addEventListener('mousedown', (e) => {
-//         isDragging = true;
-//         offsetX = e.clientX - widget.getBoundingClientRect().left;
-//         offsetY = e.clientY - widget.getBoundingClientRect().top;
-//     });
-//
-//     document.addEventListener('mousemove', (e) => {
-//         if (isDragging) {
-//             const newX = e.clientX - offsetX;
-//             const newY = e.clientY - offsetY;
-//
-//             // Set boundaries to prevent the widget from going off-screen
-//             const minX = 0;
-//             const minY = 0;
-//             const maxX = window.innerWidth - widget.offsetWidth;
-//             const maxY = window.innerHeight - widget.offsetHeight;
-//
-//             widget.style.left = `${Math.max(minX, Math.min(maxX, newX))}px`;
-//             widget.style.top = `${Math.max(minY, Math.min(maxY, newY))}px`;
-//         }
-//     });
-//
-//     document.addEventListener('mouseup', () => {
-//         isDragging = false;
-//     });
-// }
-//
-// // Allows user to move uploadWidget div but not off screen
-// document.addEventListener('DOMContentLoaded', () => {
-//     const widget = document.getElementById('uploadWidget');
-//
-//     let isDragging = false;
-//     let offsetX, offsetY;
-//
-//     widget.addEventListener('mousedown', (e) => {
-//         isDragging = true;
-//         offsetX = e.clientX - widget.getBoundingClientRect().left;
-//         offsetY = e.clientY - widget.getBoundingClientRect().top;
-//         widget.style.transition = "none"; // Disable any transitions during dragging
-//         e.preventDefault(); // Prevent default behavior (especially for text selection)
-//     });
-//
-//     document.addEventListener('mousemove', (e) => {
-//         if (isDragging) {
-//             const mouseX = e.clientX;
-//             const mouseY = e.clientY;
-//
-//             // Calculate potential new position
-//             let newLeft = mouseX - offsetX;
-//             let newTop = mouseY - offsetY;
-//
-//             // Get widget dimensions
-//             const widgetWidth = widget.offsetWidth;
-//             const widgetHeight = widget.offsetHeight;
-//
-//             // Get window dimensions
-//             const windowWidth = window.innerWidth;
-//             const windowHeight = window.innerHeight;
-//
-//             // Set boundaries
-//             if (newLeft < 0) newLeft = 0;
-//             if (newTop < 0) newTop = 0;
-//             if (newLeft + widgetWidth > windowWidth) newLeft = windowWidth - widgetWidth;
-//             if (newTop + widgetHeight > windowHeight) newTop = windowHeight - widgetHeight;
-//
-//             // Apply new position within boundaries
-//             widget.style.left = `${newLeft}px`;
-//             widget.style.top = `${newTop}px`;
-//         }
-//     });
-//
-//     document.addEventListener('mouseup', () => {
-//         isDragging = false;
-//         widget.style.transition = ""; // Re-enable any transitions after dragging
-//     });
-// });

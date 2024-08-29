@@ -70,8 +70,64 @@ setupFieldListeners();
 // Optional: Handle Sign Up button if it needs to perform a different action
 document.getElementById('signUpButton').addEventListener('click', function() {
     // Redirect to the sign-up page
-    window.location.href = 'signup.html';
+    // window.location.href = 'signup.html';
 });
+
+document.getElementById('getToken').addEventListener('click', function() {
+    fetch('http://localhost:8080/RCImages-0.1/request/limit_token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.json().then(data => {
+                    throw new Error(data.error);
+                });
+            }
+        })
+        .then(data => {
+            console.log('GOT TOKEN:', data.token);
+            localStorage.setItem('authToken', data.token);
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+        });
+});
+
+document.getElementById('testToken').addEventListener('click', function() {
+    const token = localStorage.getItem('authToken');
+    fetch(`http://localhost:8080/RCImages-0.1/request/limit_token/validateToken?token=${encodeURIComponent(token)}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.json().then(data => {
+                    throw new Error(data.error);
+                });
+            }
+        })
+        .then(data => {
+            if (data.valid) {
+                console.log('Token is valid!');
+                // Proceed with any further actions
+            } else {
+                console.log('Token is not valid.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+        });
+});
+
 
 
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Login Form</title>
+  <link rel="stylesheet" href="css/search.css">
+  <!--    <link rel="stylesheet" href="css/loginn.css">-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">-->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<script src="js/search.js" defer></script>
+
+<!-- BACKGROUND -->
+<div class="background">
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+<div class="create">
+  <div class="createButton"></div>
+</div>
+
+<div class="searchWidget">
+  <h3 id="search">Search</h3>
+  <form id="searchForm" method="post" enctype="multipart/form-data">
+    <input type="text" id="coaster" placeholder="Roller Coaster (ex. 'Fury 325')">
+    <div class="error-message" id="nameError"></div>
+
+    <input type="text" id="element" placeholder="Elements (ex. 'Loop')">
+    <div class="error-message" id="elementError"></div>
+
+    <div id="elementContainer">
+      <!-- Selected elements will be listed here -->
+    </div>
+
+    <button id="submitButton">Search</button>
+    <div class="error-message" id="submitError"></div>
+  </form>
+
+</div>
+
+
+<div class="userContentWidget">
+  <div class="image-gallery">
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 3"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 3"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 3"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 1"></div>
+    <div class="image-item"><img src="image2.png" alt="Roller Coaster 2"></div>
+    <div class="image-item"><img src="image1.jpeg" alt="Roller Coaster 3"></div>
+  </div>
+</div>
+
+</body>
+</html>

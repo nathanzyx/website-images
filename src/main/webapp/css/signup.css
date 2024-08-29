@@ -41,12 +41,13 @@ body {
 }
 
 .error-message {
-    color: #ff5e5e;
+    color: #ff4848;
     font-size: 14px;
-    margin-top: -2px;
-    display: none;
+    margin-bottom: 23px;
+    /*display: none;*/
+    /* text-align: center; */
 
-    height: 10px;
+    /*height: 0px;*/
 }
 
 .success-message {

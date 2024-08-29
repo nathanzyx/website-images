@@ -33,14 +33,74 @@
 
 </div>
 
+
+
 <div class="uploadWidget" id="uploadWidget">
   <button id="closeUploadWidget">X</button>
-  <h3 id="create">Upload Image</h3>
+  <h3 id="create">Upload</h3>
   <form id="uploadForm" method="post" enctype="multipart/form-data">
-    <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
-    <button type="submit">Upload</button>
+    <div class="dropdown">
+      <input type="text" id="coaster" placeholder="Roller Coaster Name">
+      <ul id="coasterSuggestions" class="dropdown-content">
+        <!-- Suggestions will be populated here dynamically -->
+      </ul>
+    </div>
+
+    <div class="dropdown">
+      <input type="text" id="elements" placeholder="Elements">
+      <ul id="elementSuggestions" class="dropdown-content">
+        <!-- Element suggestions will be populated here dynamically -->
+      </ul>
+    </div>
+
+    <div id="selectedElements">
+      <!-- Selected elements will be listed here -->
+    </div>
+
+    <input type="file" id="imageFile" name="imageFile" accept="image/*" multiple required>
+    <button type="submit" id="submitButton">Upload</button>
   </form>
 </div>
+
+<!--<div class="uploadWidget" id="uploadWidget">-->
+<!--  <button id="closeUploadWidget">X</button>-->
+<!--  <h3 id="create">Upload Image</h3>-->
+<!--  <form id="uploadForm" method="post" enctype="multipart/form-data">-->
+<!--    <label for="coaster">Roller Coaster Name</label>-->
+<!--    <input type="text" placeholder="Roller Coaster Name" id="coaster" required>-->
+<!--    <ul id="coasterSuggestions" class="suggestions-list">-->
+<!--      <li>Fury 325</li>-->
+<!--      <li>Leviathan</li>-->
+<!--      <li>Orion</li>-->
+<!--    </ul>-->
+
+<!--    <label for="element">Element(s)</label>-->
+<!--    <input type="text" placeholder="Elements" id="element" required>-->
+<!--    <ul id="elementSuggestions" class="suggestions-list"></ul>-->
+
+<!--    <input type="file" id="imageFile" name="imageFile" accept="image/*" required>-->
+<!--    <button type="submit">Upload</button>-->
+<!--  </form>-->
+<!--</div>-->
+
+<!--<div class="uploadWidget" id="uploadWidget">-->
+<!--  <button id="closeUploadWidget">X</button>-->
+<!--  <h3 id="create">Upload Image</h3>-->
+<!--  <form id="uploadForm" method="post" enctype="multipart/form-data">-->
+
+<!--    <label for="coaster">Roller Coaster Name</label>-->
+<!--    <input type="text" placeholder="Roller Coaster Name" id="coaster" required>-->
+
+<!--    <label for="element">Element(s) in Photo</label>-->
+<!--    <input type="text" placeholder="Search and add elements" id="element" required>-->
+
+<!--    <ul id="elementList"></ul> &lt;!&ndash; To show selected elements &ndash;&gt;-->
+
+
+<!--    <input type="file" id="imageFile" name="imageFile" accept="image/*" required>-->
+<!--    <button type="submit">Upload</button>-->
+<!--  </form>-->
+<!--</div>-->
 
 
 

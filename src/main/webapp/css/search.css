@@ -75,72 +75,121 @@ body {
 }
 
 
-.error-message {
-    color: #ff5e5e;
+div.error-message {
+    color: #ff4848;
     font-size: 14px;
-    /*margin-top: 0px;*/
-    display: none;
+    /*margin-bottom: 23px;*/
+    /*display: none;*/
+    /* text-align: center; */
 
-    text-align: center;
-
-    height: 4px;
+    height: 14px;
 }
 
 
 /* USER WIDGET SECTION */
-.userWidget {
-    height: 65%;
+.searchWidget {
+    height: 60%;
     width: 20%;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
-    left: 11.5%;
+    left: 12%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 50px 35px;
+    padding: 1% 1%;
     /*padding: 2% 2%;*/
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
 }
-.userWidget * {
+.searchWidget * {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
 }
-.userWidget h3 {
+.searchWidget h3 {
     font-size: 32px;
     font-weight: 500;
-    line-height: 42px;
+    /*line-height: 2%;*/
     text-align: center;
 
-    margin-bottom: 30%;
+    margin-bottom: 1%;
 
-    /*padding-top: -80%;*/
+    /*padding-top: -20px;*/
 }
-.userWidget h2 {
-    font-size: 22px;
-    font-weight: 500;
-    margin: 0;
-    text-align: center;
-}
-.userWidget button {
-    margin-top: 30%;
-    width: 80%;
+.searchWidget button {
+    margin-top: 10px;
+
+    width: 50%;
+    /*top: 50%;*/
     background-color: #ffffff;
     color: #080710;
-    padding: 15px 0;
+    /*padding: 15px 0;*/
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+
     align-self: center;
+    justify-self: flex-end;
+    /*margin-top: auto;*/
 }
+
+#elementContainer {
+    /*align-self: center;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    /*height: 30%;*/
+    flex-grow: 1;
+    /*gap: 10px;*/
+}
+#elementContainer span {
+    display: inline-block;
+    width: 80%;
+    height: 28px;
+    /*padding: 5px;*/
+    margin: 5px;
+    background-color: rgba(255, 255, 255, 0.13);
+
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+
+    text-align: center;
+
+    border-radius: 3px;
+    cursor: pointer;
+
+    white-space: nowrap;       /* Prevent text from wrapping */
+    overflow: hidden;          /* Hide overflowed text */
+    text-overflow: ellipsis;   /* Add "..." for overflowed text */
+    font-size: 14px;           /* Adjust font size as needed */
+    line-height: 28px;         /* Align text vertically within the span */
+
+
+}
+#elementContainer span:hover {
+    background-color: rgba(255, 77, 77, 0.41);
+}
+
+.flash {
+    animation: flash .5s ease-in-out;
+}
+
+@keyframes flash {
+    0% { background-color: rgba(255, 0, 0, 0.5); }
+    50% { background-color: #ffffff12; }
+    100% { background-color: rgba(255, 0, 0, 0.5); }
+}
+
+
 
 /* CREATE WIDGET SECTION */
 .uploadWidget {
@@ -306,24 +355,6 @@ body {
 
 .show { display: block; }
 
-#selectedElements {
-    margin-top: 10px;
-    height: 30%;
-}
-
-#selectedElements span {
-    display: inline-block;
-    padding: 5px;
-    margin: 5px;
-    background-color: rgba(255, 255, 255, 0.13);
-
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-
-    border-radius: 3px;
-    cursor: pointer;
-}
-
 
 /*.uploadWidget button {*/
 /*    margin-top: 20px; !* Adjusted for spacing *!*/
@@ -350,12 +381,12 @@ body {
 /* USER CONTENT WIDGET SECTION */
 .userContentWidget {
     height: 60%;
-    width: 60%;
+    width: 72%;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
-    right: -20%;
+    right: -32%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -373,7 +404,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll; /* Enable vertical scrolling */
-    max-height: 500px; /* Adjust height as needed */
+    max-height: 100%; /* Adjust height as needed */
     padding: 10px;
     gap: 10px;
     scrollbar-width: none; /* For Firefox */
@@ -428,9 +459,9 @@ label {
     font-weight: 500;
 }
 
-input {
+#searchForm input {
     display: block;
-    height: 50px;
+    height: 30px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.07);
     border-radius: 3px;

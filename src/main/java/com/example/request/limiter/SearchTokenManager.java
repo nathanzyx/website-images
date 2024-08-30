@@ -85,9 +85,10 @@ public class SearchTokenManager {
                 return TokenStatus.INVALID;
             }
             Date now = new Date();
-            long delay = 15000;
+            long delay = 3000;
             if(now.getTime() < IssuedAt.getTime() + delay) {
                 return TokenStatus.tooEarly((IssuedAt.getTime() + delay) - now.getTime());
+//                return TokenStatus.tooEarly((IssuedAt.getTime() + delay) - now.getTime());
             }
 
             String subject = jwt.getSubject();

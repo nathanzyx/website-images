@@ -58,6 +58,28 @@ body {
     border-radius: 50%;
 }
 
+/* Background image container */
+.background-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure it's behind other content */
+    overflow: hidden; /* Hide overflow if the image is too large */
+    border-radius: 10px; /* Match the parent container's border radius */
+}
+
+/* Style for the image inside the background div */
+.background-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire div */
+    opacity: 0.3; /* Make the image semi-transparent */
+}
+
+
+
 
 
 .create .createButton {
@@ -74,8 +96,103 @@ body {
     top: 2%;
 }
 
+#gradientOverlay {
+    position: absolute;
+    top: 80%; /* Start from the top of the container */
+    left: 0;
+    width: 100%;
+    height: 20%; /* Adjust height to control the size of the gradient */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(8, 7, 16) 100%);
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+#backgroundImageContainer {
+    width: 100%;
+    height: 700px;
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Position context for overlay */
+    display: flex;
+    align-items: flex-end; /* Align child elements (text) to the bottom */
+    justify-content: center; /* Center horizontally */
+}
+
+#backgroundImageText {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    padding-bottom: 500px;
+    outline: none;
+    border: none;
+    font-size: 4rem;
+    /* text-align: center; */
+    /* white-space: nowrap; /* Prevent text from wrapping */
+    overflow: inherit; /* Hide overflow text */
+    text-overflow: ellipsis;
+    /* position: absolute; */
+    bottom: 130px; /* Position text from the bottom */
+    left: 80%; /* Position text from the left */
+    right: 5%;
+}
+
+/*#backgroundImageContainer {*/
+/*    width: 100%;*/
+/*    height: 700px;*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    position: relative; !* Position context for overlay *!*/
+/*    display: flex;*/
+/*    align-items: flex-end; !* Align child elements (text) to the bottom *!*/
+/*    justify-content: center; !* Center horizontally *!*/
+/*}*/
+
+/*#backgroundImageText {*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*    color: #ffffff;*/
+/*    letter-spacing: 0.5px;*/
+/*    padding-bottom: 400px;*/
+/*    outline: none;*/
+/*    border: none;*/
+/*    font-size: clamp(1rem, 20vw, 2.5rem); !* Responsive font size *!*/
+/*    !* text-align: center; *!*/
+/*    !* white-space: nowrap; !* Prevent text from wrapping *!*/
+/*    overflow: hidden; !* Hide overflow text *!*/
+/*    text-overflow: ellipsis; !* Show ellipsis for overflow *!*/
+/*    position: absolute;*/
+/*    bottom: 130px; !* Position text from the bottom *!*/
+/*    left: 80%; !* Position text from the left *!*/
+/*    right: 5%;*/
+/*}*/
+
+/*#backgroundImageContainer {*/
+/*    width: 100%;*/
+/*    height: 700px;*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*}*/
+/*#gradientOverlay {*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 20.6%;*/
+/*    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(8, 7, 16) 100%);*/
+/*    pointer-events: none; !* Allow clicks to pass through *!*/
+/*}*/
+
 
 div.error-message {
+    font-family: 'Poppins', sans-serif;
+    color: #ff4848;
+    font-size: 14px;
+    /*margin-bottom: 23px;*/
+    /*display: none;*/
+    /* text-align: center; */
+
+    height: 14px;
+}
+
+.error-message {
     color: #ff4848;
     font-size: 14px;
     /*margin-bottom: 23px;*/
@@ -88,13 +205,13 @@ div.error-message {
 
 /* USER WIDGET SECTION */
 .searchWidget {
-    height: 60%;
-    width: 20%;
+    height: 50%;
+    width: 15%;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 50%;
-    left: 12%;
+    top: 53%;
+    left: 9%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -104,6 +221,7 @@ div.error-message {
     display: flex;
     flex-direction: column;
     justify-content: start;
+    z-index: 2;
 }
 .searchWidget * {
     font-family: 'Poppins', sans-serif;
@@ -111,6 +229,7 @@ div.error-message {
     letter-spacing: 0.5px;
     outline: none;
     border: none;
+    /* width: 80%; */
 }
 .searchWidget h3 {
     font-size: 32px;
@@ -380,15 +499,15 @@ div.error-message {
 
 /* USER CONTENT WIDGET SECTION */
 .userContentWidget {
-    height: 60%;
-    width: 72%;
-    background-color: rgba(255, 255, 255, 0.13);
+    height: 70%;
+    width: 81%;
+    /*background-color: rgba(255, 255, 255, 0.13);*/
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 50%;
-    right: -32%;
+    top: 63%;
+    left: 58%;
     border-radius: 10px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     /*padding: 50px 35px;*/
@@ -399,6 +518,7 @@ div.error-message {
     z-index: 5;
 }
 
+
 /* Container for the image gallery */
 .image-gallery {
     display: flex;
@@ -408,6 +528,21 @@ div.error-message {
     padding: 10px;
     gap: 10px;
     scrollbar-width: none; /* For Firefox */
+}
+.image-gallery button {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px; /* Adjusted for spacing */
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.11);
+    color: #ffffff;
+    border: none;
+    padding: 15px 0;
+    font-size: 25px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 4;
+    display: none;
 }
 
 .image-gallery::-webkit-scrollbar {
@@ -426,15 +561,15 @@ div.error-message {
 
 /* Style for each image item */
 .image-item {
-    flex: 1 1 calc(25% - 20px); /* 3 images per row, with a gap */
-    width: 200px; /* Fixed width */
-    height: 200px; /* Fixed height */
+    flex: 1 0 calc(20% - 0px);
+    width: 40px;
+    height: 400px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px; /* Optional: add rounded corners */
-    overflow: hidden; /* Hide overflow */
+    /* border-radius: 8px; */
+    overflow: hidden;
 }
 /*.image-item {*/
 /*    flex: 1 1 calc(33.333% - 20px); !* 3 images per row, with a gap *!*/
@@ -505,3 +640,568 @@ label {
 .social i {
     margin-right: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**,*/
+/**:before,*/
+/**:after {*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*body {*/
+/*    background-color: #080710;*/
+/*}*/
+
+/*.background {*/
+/*    width: 430px;*/
+/*    height: 520px;*/
+/*    position: absolute;*/
+/*    transform: translate(-50%, -50%);*/
+/*    left: 50%;*/
+/*    top: 50%;*/
+/*}*/
+
+/*.widgetBackground {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    position: absolute;*/
+/*    transform: translate(-50%, -50%);*/
+/*    !*display: none;*!*/
+/*    left: 50%;*/
+/*    top: 50%;*/
+/*    z-index: 9;*/
+/*}*/
+
+/*.background .shape {*/
+/*    height: 200px;*/
+/*    width: 200px;*/
+/*    position: absolute;*/
+/*    border-radius: 50%;*/
+/*}*/
+
+/*.shape:first-child {*/
+/*    !*background: linear-gradient(#1845ad, #23a2f6);*!*/
+/*    background: linear-gradient(#5f75a2, #2d2d2d);*/
+/*    left: -50%;*/
+/*    top: -10%;*/
+/*}*/
+
+/*.shape:last-child {*/
+/*    !*background: linear-gradient(to right, #ff512f, #f09819);*!*/
+/*    background: linear-gradient(to right, #17af57, #2d2d2d);*/
+/*    right: -60px;*/
+/*    bottom: -70px;*/
+/*}*/
+
+/*.shape {*/
+/*    height: 200px;*/
+/*    width: 200px;*/
+/*    position: absolute;*/
+/*    border-radius: 50%;*/
+/*}*/
+
+
+
+/*.create .createButton {*/
+/*    height: 100px;*/
+/*    width: 100px;*/
+/*    position: absolute;*/
+/*    border-radius: 50%;*/
+/*}*/
+
+/*.createButton {*/
+/*    !*background: linear-gradient(to right, #ff512f, #f09819);*!*/
+/*    background: linear-gradient(#fdfdfd, #9b9b9b);*/
+/*    right: 1%;*/
+/*    top: 2%;*/
+/*}*/
+
+
+/*div.error-message {*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*    color: #ff4848;*/
+/*    font-size: 14px;*/
+/*    !*margin-bottom: 23px;*!*/
+/*    !*display: none;*!*/
+/*    !* text-align: center; *!*/
+
+/*    height: 14px;*/
+/*}*/
+
+/*.error-message {*/
+/*    color: #ff4848;*/
+/*    font-size: 14px;*/
+/*    !*margin-bottom: 23px;*!*/
+/*    !*display: none;*!*/
+/*    !* text-align: center; *!*/
+
+/*    height: 14px;*/
+/*}*/
+
+
+/*!* USER WIDGET SECTION *!*/
+/*.searchWidget {*/
+/*    height: 60%;*/
+/*    width: 20%;*/
+/*    background-color: rgba(255, 255, 255, 0.13);*/
+/*    position: absolute;*/
+/*    transform: translate(-50%, -50%);*/
+/*    top: 50%;*/
+/*    left: 12%;*/
+/*    border-radius: 10px;*/
+/*    backdrop-filter: blur(10px);*/
+/*    border: 2px solid rgba(255, 255, 255, 0.1);*/
+/*    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);*/
+/*    padding: 1% 1%;*/
+/*    !*padding: 2% 2%;*!*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: start;*/
+/*}*/
+/*.searchWidget * {*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*    color: #ffffff;*/
+/*    letter-spacing: 0.5px;*/
+/*    outline: none;*/
+/*    border: none;*/
+/*}*/
+/*.searchWidget h3 {*/
+/*    font-size: 32px;*/
+/*    font-weight: 500;*/
+/*    !*line-height: 2%;*!*/
+/*    text-align: center;*/
+
+/*    margin-bottom: 1%;*/
+
+/*    !*padding-top: -20px;*!*/
+/*}*/
+/*.searchWidget button {*/
+/*    margin-top: 10px;*/
+
+/*    width: 50%;*/
+/*    !*top: 50%;*!*/
+/*    background-color: #ffffff;*/
+/*    color: #080710;*/
+/*    !*padding: 15px 0;*!*/
+/*    font-size: 18px;*/
+/*    font-weight: 600;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+
+/*    align-self: center;*/
+/*    justify-self: flex-end;*/
+/*    !*margin-top: auto;*!*/
+/*}*/
+
+/*#elementContainer {*/
+/*    !*align-self: center;*!*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    margin-top: 10px;*/
+/*    !*height: 30%;*!*/
+/*    flex-grow: 1;*/
+/*    !*gap: 10px;*!*/
+/*}*/
+/*#elementContainer span {*/
+/*    display: inline-block;*/
+/*    width: 80%;*/
+/*    height: 28px;*/
+/*    !*padding: 5px;*!*/
+/*    margin: 5px;*/
+/*    background-color: rgba(255, 255, 255, 0.13);*/
+
+/*    border: 2px solid rgba(255, 255, 255, 0.1);*/
+/*    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);*/
+
+/*    text-align: center;*/
+
+/*    border-radius: 3px;*/
+/*    cursor: pointer;*/
+
+/*    white-space: nowrap;       !* Prevent text from wrapping *!*/
+/*    overflow: hidden;          !* Hide overflowed text *!*/
+/*    text-overflow: ellipsis;   !* Add "..." for overflowed text *!*/
+/*    font-size: 14px;           !* Adjust font size as needed *!*/
+/*    line-height: 28px;         !* Align text vertically within the span *!*/
+
+
+/*}*/
+/*#elementContainer span:hover {*/
+/*    background-color: rgba(255, 77, 77, 0.41);*/
+/*}*/
+
+/*.flash {*/
+/*    animation: flash .5s ease-in-out;*/
+/*}*/
+
+/*@keyframes flash {*/
+/*    0% { background-color: rgba(255, 0, 0, 0.5); }*/
+/*    50% { background-color: #ffffff12; }*/
+/*    100% { background-color: rgba(255, 0, 0, 0.5); }*/
+/*}*/
+
+
+
+/*!* CREATE WIDGET SECTION *!*/
+/*.uploadWidget {*/
+/*    height: 50%;*/
+/*    width: 30%;*/
+/*    background-color: rgba(255, 255, 255, 0.13);*/
+/*    position: absolute;*/
+
+/*    top: 25%;*/
+/*    left: 25%;*/
+/*    border-radius: 10px;*/
+/*    backdrop-filter: blur(10px);*/
+/*    border: 2px solid rgba(255, 255, 255, 0.1);*/
+/*    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);*/
+/*    padding: 1% 1%;*/
+/*    !*padding: 50px 35px;*!*/
+
+/*    cursor: move;*/
+
+/*    display: none;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    z-index: 10;*/
+/*}*/
+/*.uploadWidget * {*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*    color: #ffffff;*/
+/*    letter-spacing: 0.5px;*/
+/*    outline: none;*/
+/*    border: none;*/
+/*}*/
+/*.uploadWidget h3 {*/
+/*    font-size: 32px;*/
+/*    font-weight: 500;*/
+/*    line-height: 42px;*/
+/*    text-align: center;*/
+/*}*/
+/*.uploadWidget h2 {*/
+/*    font-size: 22px;*/
+/*    font-weight: 500;*/
+/*    margin: 0;*/
+/*    text-align: center;*/
+/*}*/
+/*.uploadWidget #submitButton {*/
+/*    margin-top: 20px; !* Adjusted for spacing *!*/
+/*    width: 100%;*/
+/*    background-color: #ffffff;*/
+/*    color: #080710;*/
+/*    padding: 15px 0;*/
+/*    font-size: 18px;*/
+/*    font-weight: 600;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.suggestions-list {*/
+/*    position: absolute;*/
+/*    background-color: #000000;*/
+/*    border: 1px solid #494949;*/
+/*    max-height: 150px;*/
+/*    overflow-y: auto;*/
+/*    list-style: none;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    width: 100%;*/
+/*    z-index: 1000; !* Ensure it appears above other elements *!*/
+/*}*/
+
+/*.suggestion-item {*/
+/*    padding: 8px 12px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.suggestion-item:hover {*/
+/*    background-color: #f0f0f0;*/
+/*}*/
+
+/*.uploadWidget .dropdown {*/
+/*    margin-bottom: 1%; !* Space between the input fields *!*/
+/*}*/
+
+/*.dropdown {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*}*/
+
+/*!*#coaster {*!*/
+/*!*    box-sizing: border-box;*!*/
+/*!*    font-size: 16px;*!*/
+/*!*    padding: 14px;*!*/
+/*!*    border: 1px solid #ddd;*!*/
+/*!*}*!*/
+
+
+/*!* Style for the dropdown content *!*/
+/*.dropdown-content {*/
+/*    display: none;*/
+/*    position: absolute;*/
+/*    background-color: rgba(0, 0, 0, 0.4);*/
+/*    border: 2px solid rgba(255, 255, 255, 0.1);*/
+/*    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);*/
+/*    list-style-type: none;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*    z-index: 1;*/
+/*}*/
+/*!*.dropdown-content {*!*/
+/*!*    display: none;*!*/
+/*!*    position: absolute;*!*/
+/*!*    !*background-color: #f6f6f6;*!*!*/
+/*!*    !*min-width: 230px;*!*!*/
+/*!*    !*border: 1px solid #ddd;*!*!*/
+/*!*    z-index: 1;*!*/
+/*!*    list-style-type: none;*!*/
+/*!*    padding: 0;*!*/
+/*!*    margin: 0;*!*/
+/*!*    backdrop-filter: blur(10px);*!*/
+
+/*!*    !*background-color: rgba(255, 255, 255, 0.13);*!*!*/
+/*!*    background-color: rgba(0, 0, 0, 0.4);*!*/
+
+/*!*    border: 2px solid rgba(255, 255, 255, 0.1);*!*/
+/*!*    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);*!*/
+/*!*}*!*/
+
+
+/*!* Make dropdown items visually distinct *!*/
+/*.dropdown-content li {*/
+/*    color: white;*/
+
+/*    background-color: rgba(0, 0, 0, 0.55);*/
+/*    backdrop-filter: blur(10px);*/
+/*    padding: 12px 16px;*/
+/*    cursor: pointer;*/
+/*}*/
+/*!*.dropdown-content li {*!*/
+/*!*    color: white;*!*/
+/*!*    backdrop-filter: blur(10px);*!*/
+/*!*    padding: 12px 16px;*!*/
+/*!*    text-decoration: none;*!*/
+/*!*    cursor: pointer;*!*/
+/*!*}*!*/
+
+
+/*.dropdown-content li:hover {*/
+/*    background-color: rgba(0, 0, 0, 0.83);*/
+/*}*/
+/*!*.dropdown-content li:hover { background-color: rgba(0, 0, 0, 0.83); }*!*/
+
+
+/*!* Apply styles to dropdown input fields *!*/
+/*.dropdown input {*/
+/*    box-sizing: border-box;*/
+/*    font-size: 16px;*/
+/*    padding: 10px; !* Adjusted padding *!*/
+/*    border: 1px solid #ddd;*/
+/*}*/
+/*!*.dropdown input {*!*/
+/*!*    box-sizing: border-box;*!*/
+/*!*    font-size: 16px;*!*/
+/*!*    padding: 10%;*!*/
+/*!*    border: 1px solid #ddd;*!*/
+/*!*}*!*/
+
+/*.show { display: block; }*/
+
+
+/*!*.uploadWidget button {*!*/
+/*!*    margin-top: 20px; !* Adjusted for spacing *!*!*/
+/*!*    width: 100%;*!*/
+/*!*    background-color: #ffffff;*!*/
+/*!*    color: #080710;*!*/
+/*!*    padding: 15px 0;*!*/
+/*!*    font-size: 18px;*!*/
+/*!*    font-weight: 600;*!*/
+/*!*    border-radius: 5px;*!*/
+/*!*    cursor: pointer;*!*/
+/*!*}*!*/
+/*#closeUploadWidget {*/
+/*    position: absolute;*/
+/*    top: 10px;*/
+/*    right: 10px;*/
+/*    background-color: transparent;*/
+/*    border: none;*/
+/*    color: white;*/
+/*    font-size: 20px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*!* USER CONTENT WIDGET SECTION *!*/
+/*.userContentWidget {*/
+/*    height: 60%;*/
+/*    width: 72%;*/
+/*    background-color: rgba(255, 255, 255, 0.13);*/
+/*    position: absolute;*/
+/*    transform: translate(-50%, -50%);*/
+/*    top: 50%;*/
+/*    right: -32%;*/
+/*    border-radius: 10px;*/
+/*    backdrop-filter: blur(10px);*/
+/*    border: 2px solid rgba(255, 255, 255, 0.1);*/
+/*    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);*/
+/*    !*padding: 50px 35px;*!*/
+/*    !*overflow-x: auto; !* Enable horizontal scrolling *!*!*/
+/*    white-space: nowrap; !* Prevent wrapping of images *!*/
+
+/*    overflow: hidden;*/
+/*    z-index: 5;*/
+/*}*/
+
+/*!* Container for the image gallery *!*/
+/*.image-gallery {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    overflow-y: scroll; !* Enable vertical scrolling *!*/
+/*    max-height: 100%; !* Adjust height as needed *!*/
+/*    padding: 10px;*/
+/*    gap: 10px;*/
+/*    scrollbar-width: none; !* For Firefox *!*/
+/*}*/
+/*.image-gallery button {*/
+/*    margin-top: 10px;*/
+
+/*    width: 20%;*/
+/*    height: 20%;*/
+/*    !*top: 50%;*!*/
+/*    background-color: #ffffff;*/
+/*    color: #080710;*/
+/*    !*padding: 15px 0;*!*/
+/*    font-size: 18px;*/
+/*    font-weight: 600;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+
+/*    align-self: center;*/
+/*    justify-self: flex-end;*/
+/*}*/
+
+/*.image-gallery::-webkit-scrollbar {*/
+/*    display: none; !* For Chrome, Safari, and Edge *!*/
+/*}*/
+
+/*!* Optional: hide scrollbar but show on hover *!*/
+/*.image-gallery::-webkit-scrollbar {*/
+/*    width: 0; !* Optional: scrollbar width *!*/
+/*    height: 0; !* Optional: scrollbar height *!*/
+/*}*/
+
+/*.image-gallery::-webkit-scrollbar-thumb {*/
+/*    background: transparent; !* Optional: scrollbar color *!*/
+/*}*/
+
+/*!* Style for each image item *!*/
+/*.image-item {*/
+/*    flex: 1 1 calc(25% - 20px); !* 3 images per row, with a gap *!*/
+/*    width: 200px; !* Fixed width *!*/
+/*    height: 200px; !* Fixed height *!*/
+/*    box-sizing: border-box;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    border-radius: 8px; !* Optional: add rounded corners *!*/
+/*    overflow: hidden; !* Hide overflow *!*/
+/*}*/
+/*!*.image-item {*!*/
+/*!*    flex: 1 1 calc(33.333% - 20px); !* 3 images per row, with a gap *!*!*/
+/*!*    box-sizing: border-box;*!*/
+/*!*    display: flex;*!*/
+/*!*    justify-content: center;*!*/
+/*!*    align-items: center;*!*/
+/*!*}*!*/
+
+/*!* Style for images *!*/
+/*.image-item img {*/
+/*    width: 100%; !* Adjust width to fit within the container *!*/
+/*    height: 100%;*/
+/*    !*border-radius: 8px; !* Optional: add rounded corners *!*!*/
+/*    object-fit: scale-down;*/
+/*}*/
+
+/*label {*/
+/*    display: block;*/
+/*    margin-top: 30px;*/
+/*    font-size: 16px;*/
+/*    font-weight: 500;*/
+/*}*/
+
+/*#searchForm input {*/
+/*    display: block;*/
+/*    height: 30px;*/
+/*    width: 100%;*/
+/*    background-color: rgba(255, 255, 255, 0.07);*/
+/*    border-radius: 3px;*/
+/*    padding: 0 10px;*/
+/*    margin-top: 8px;*/
+/*    font-size: 14px;*/
+/*    font-weight: 300;*/
+/*}*/
+
+/*::placeholder {*/
+/*    color: #e5e5e5;*/
+/*}*/
+
+/*.separator {*/
+/*    margin: 10px 0;*/
+/*    padding-top: 20px;*/
+/*    text-align: center;*/
+/*    !*align-self: center;*!*/
+/*    !*align-items: center;*!*/
+/*    !*align-content: center;*!*/
+/*}*/
+
+/*.social {*/
+/*    margin-top: 30px;*/
+/*    display: flex;*/
+/*}*/
+
+/*.social div {*/
+/*    background-color: rgba(255, 255, 255, 0.27);*/
+/*    width: 150px;*/
+/*    border-radius: 3px;*/
+/*    padding: 5px 10px 10px 5px;*/
+/*    color: #eaf0fb;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.social div:hover {*/
+/*    background-color: rgba(255, 255, 255, 0.47);*/
+/*}*/
+
+/*.social i {*/
+/*    margin-right: 10px;*/
+/*}*/

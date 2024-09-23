@@ -188,110 +188,154 @@ async function displayImages(response, loadingMore) {
 
 
 
-    // if (imagesArray.length > 0) {
-    //     // Sort imagesArray by the length of imageData in descending order
-    //     imagesArray.sort((a, b) => b.imageData.length - a.imageData.length);
+
+    // console.log(imagesArray)
+    // if (!loadingMore) {
+    //     // If there are images, choose a random one to set as the background
+    //     if (imagesArray.length > 0) {
+    //         const randomIndex = Math.floor(Math.random() * imagesArray.length);
+    //         // const randomImage = imagesArray[randomIndex];
     //
-    //     // Choose the highest quality image (longest imageData)
-    //     const highestQualityImage = imagesArray[0]; // The first image after sorting
+    //         let lgth = 0;
+    //         let longest = 0;
+    //         for (let i = 0; i < imagesArray.length; i++) {
+    //             if (imagesArray[i].imageData.length > lgth) {
+    //                 lgth = imagesArray[i].imageData.length;
+    //                 longest = i;
+    //             }
+    //         }
+    //         const randomImage = imagesArray[longest];
     //
-    //     // Set the highest quality image and gradient as the background
-    //     backgroundImageContainer.style.backgroundImage = `
-    //     linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%),
-    //     url(data:image/jpeg;base64,${highestQualityImage.imageData})
-    // `;
-    // } else {
-    //     // If no images are returned, ensure no background is set
-    //     backgroundImageContainer.style.backgroundImage = 'none';
+    //
+    //         // Set the random image and gradient as the background
+    //         backgroundImageContainer.style.backgroundImage = `
+    //         linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%),
+    //         url(data:image/jpeg;base64,${randomImage.imageData})
+    //     `;
+    //
+    //         // Assign the coaster name:
+    //         // Find the most common coaster name
+    //         const nameFrequency = {};
+    //         imagesArray.forEach(image => {
+    //             const name = image.coasterName;
+    //             if (nameFrequency[name]) {
+    //                 nameFrequency[name]++;
+    //             } else {
+    //                 nameFrequency[name] = 1;
+    //             }
+    //         });
+    //
+    //         // Get the most common name
+    //         let mostCommonName = '';
+    //         let maxCount = 0;
+    //         for (const [name, count] of Object.entries(nameFrequency)) {
+    //             if (count > maxCount) {
+    //                 maxCount = count;
+    //                 mostCommonName = name;
+    //             }
+    //         }
+    //
+    //         // Capitalize each word in the most common coaster name
+    //         const capitalizedName = capitalizeWords(mostCommonName);
+    //
+    //         // Assign the formatted name to backgroundImageText
+    //         const backgroundImageText = document.getElementById('backgroundImageText');
+    //         backgroundImageText.textContent = capitalizedName;
+    //     } else {
+    //         // If no images are returned, ensure no background is set
+    //         backgroundImageContainer.style.backgroundImage = 'none';
+    //     }
     // }
+
+
     if (!loadingMore) {
-        // If there are images, choose a random one to set as the background
+        // If there are images, choose the highest quality one to set as the background
         if (imagesArray.length > 0) {
-            const randomIndex = Math.floor(Math.random() * imagesArray.length);
-            const randomImage = imagesArray[randomIndex];
+            let highestQualityImage = null;
+            let maxResolution = 0;
 
-            // Set the random image and gradient as the background
-            backgroundImageContainer.style.backgroundImage = `
-            linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%),
-            url(data:image/jpeg;base64,${randomImage.imageData})
-        `;
-
-            // Assign the coaster name:
-            // Find the most common coaster name
-            const nameFrequency = {};
+            // Loop through each image and check its resolution and aspect ratio
             imagesArray.forEach(image => {
-                const name = image.coasterName;
-                if (nameFrequency[name]) {
-                    nameFrequency[name]++;
-                } else {
-                    nameFrequency[name] = 1;
-                }
+                const img = new Image();
+                img.src = `data:image/jpeg;base64,${image.imageData}`;
+
+                // Once the image is loaded, check the dimensions
+                img.onload = function() {
+                    const resolution = img.width * img.height;
+
+                    // Ensure the image width is greater than the height (for background)
+                    if (img.width > img.height && resolution > maxResolution) {
+                        maxResolution = resolution;
+                        highestQualityImage = image;
+                    }
+
+                    // If this is the last image to be checked, update the background
+                    if (imagesArray.indexOf(image) === imagesArray.length - 1) {
+                        if (highestQualityImage) {
+                            // Set the highest quality image and gradient as the background
+                            backgroundImageContainer.style.backgroundImage = `
+                        linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%),
+                        url(data:image/jpeg;base64,${highestQualityImage.imageData})
+                    `;
+
+                            // Assign the coaster name:
+                            const mostCommonName = getMostCommonCoasterName(imagesArray);
+
+                            // Capitalize each word in the most common coaster name
+                            const capitalizedName = capitalizeWords(mostCommonName);
+
+                            // Assign the formatted name to backgroundImageText
+                            const backgroundImageText = document.getElementById('backgroundImageText');
+                            backgroundImageText.textContent = capitalizedName;
+                        } else {
+                            // If no valid image is found, ensure no background is set
+                            backgroundImageContainer.style.backgroundImage = 'none';
+                        }
+                    }
+                };
+
+                // Handle errors (e.g., if the image fails to load)
+                img.onerror = function() {
+                    if (imagesArray.indexOf(image) === imagesArray.length - 1) {
+                        backgroundImageContainer.style.backgroundImage = 'none';
+                    }
+                };
             });
-
-            // Get the most common name
-            let mostCommonName = '';
-            let maxCount = 0;
-            for (const [name, count] of Object.entries(nameFrequency)) {
-                if (count > maxCount) {
-                    maxCount = count;
-                    mostCommonName = name;
-                }
-            }
-
-            // Capitalize each word in the most common coaster name
-            const capitalizedName = capitalizeWords(mostCommonName);
-
-            // Assign the formatted name to backgroundImageText
-            const backgroundImageText = document.getElementById('backgroundImageText');
-            backgroundImageText.textContent = capitalizedName;
         } else {
             // If no images are returned, ensure no background is set
             backgroundImageContainer.style.backgroundImage = 'none';
         }
     }
-    // // If there are images, choose a random one to set as the background
-    // if (imagesArray.length > 0) {
-    //     const randomIndex = Math.floor(Math.random() * imagesArray.length);
-    //     const randomImage = imagesArray[randomIndex];
-    //
-    //     // Set the random image and gradient as the background
-    //     backgroundImageContainer.style.backgroundImage = `
-    //         linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%),
-    //         url(data:image/jpeg;base64,${randomImage.imageData})
-    //     `;
-    //
-    //     // Assign the coaster name:
-    //     // Find the most common coaster name
-    //     const nameFrequency = {};
-    //     imagesArray.forEach(image => {
-    //         const name = image.coasterName;
-    //         if (nameFrequency[name]) {
-    //             nameFrequency[name]++;
-    //         } else {
-    //             nameFrequency[name] = 1;
-    //         }
-    //     });
-    //
-    //     // Get the most common name
-    //     let mostCommonName = '';
-    //     let maxCount = 0;
-    //     for (const [name, count] of Object.entries(nameFrequency)) {
-    //         if (count > maxCount) {
-    //             maxCount = count;
-    //             mostCommonName = name;
-    //         }
-    //     }
-    //
-    //     // Capitalize each word in the most common coaster name
-    //     const capitalizedName = capitalizeWords(mostCommonName);
-    //
-    //     // Assign the formatted name to backgroundImageText
-    //     const backgroundImageText = document.getElementById('backgroundImageText');
-    //     backgroundImageText.textContent = capitalizedName;
-    // else {
-    //     // If no images are returned, ensure no background is set
-    //     backgroundImageContainer.style.backgroundImage = 'none';
-    // }
+
+// Helper function to find the most common coaster name
+    function getMostCommonCoasterName(imagesArray) {
+        const nameFrequency = {};
+        imagesArray.forEach(image => {
+            const name = image.coasterName;
+            if (nameFrequency[name]) {
+                nameFrequency[name]++;
+            } else {
+                nameFrequency[name] = 1;
+            }
+        });
+
+        // Get the most common name
+        let mostCommonName = '';
+        let maxCount = 0;
+        for (const [name, count] of Object.entries(nameFrequency)) {
+            if (count > maxCount) {
+                maxCount = count;
+                mostCommonName = name;
+            }
+        }
+
+        return mostCommonName;
+    }
+
+
+
+
+
 
     imagesArray.forEach(image => {
         const imgElement = document.createElement('img');

@@ -31,6 +31,7 @@ public class UploadService extends HttpServlet {
 
     public enum UploadStatus {
         SUCCESS,
+        SUCCESS_REPLACED,
         IMAGE_ALREADY_EXISTS,
         SERVER_ERROR,
         INVALID_IMAGE_TYPE,
@@ -119,6 +120,8 @@ public class UploadService extends HttpServlet {
     private UploadStatus uploadImage(String name, String[] elements, byte[] imageData, String imageType, String imageName) throws NoSuchAlgorithmException {
         System.out.println("uploadImage");
 
+        boolean imageDeleted = false;
+
         // Database credentials
         String url = "jdbc:mysql://localhost:3306/canvas?useSSL=false";
         String dbUser = "root";
@@ -134,6 +137,8 @@ public class UploadService extends HttpServlet {
         String insertImageCoasterQuery = "INSERT INTO image_coasters (image_id, coaster_id) VALUES (?, ?)";
         String insertImageElementQuery = "INSERT INTO image_elements (image_id, element_id) VALUES (?, ?)";
 
+        String deleteImageQuery = "DELETE FROM images WHERE image_hash = ?";
+
         String imageHash = calculateImageHash(imageData);
 
         try {
@@ -148,7 +153,18 @@ public class UploadService extends HttpServlet {
                     try (ResultSet rs = checkImageHashStmt.executeQuery()) {
                         if (rs.next()) {
                             // Image with the same hash already exists
-                            return UploadStatus.IMAGE_ALREADY_EXISTS;
+                            try (PreparedStatement deleteImageStmt = connection.prepareStatement(deleteImageQuery)) {
+                                deleteImageStmt.setString(1, imageHash);
+                                int rowsDeleted = deleteImageStmt.executeUpdate();
+
+                                if (rowsDeleted > 0) {
+                                    System.out.println("Image deleted successfully.");
+                                    imageDeleted = true;
+                                } else {
+                                    System.out.println("No image found to delete.");
+                                }
+                            }
+//                            return UploadStatus.IMAGE_ALREADY_EXISTS;
                         }
                     }
                 }
@@ -246,7 +262,9 @@ public class UploadService extends HttpServlet {
                     insertImageCoasterStmt.setInt(2, coasterId);
                     insertImageCoasterStmt.executeUpdate();
                 }
-
+                if(imageDeleted) {
+                    return UploadStatus.SUCCESS_REPLACED;
+                }
                 return UploadStatus.SUCCESS;
             } catch (SQLException e) {
                 // Log SQL exceptions
